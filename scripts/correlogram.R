@@ -8,7 +8,7 @@ library(ggplot2)
 library(svglite)
 
 # read in data
-disturbance_data <- read.csv("output/disturbance_data.csv") %>% 
+disturbance_data <- read.csv("output/disturbance_data_large.csv") %>% 
   dplyr::select(site,
                 total_disturbance,
                 unpaved_road_density,
