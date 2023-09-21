@@ -1,0 +1,148 @@
+Notebook[{Cell[
+BoxData[RowBox[{" "," "}]],"Input",ExpressionUUID -> "8fd0fc1a-660a-4e15-9800-a98372ca4e1f"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"(*",RowBox[{"solve"," ","for"," ","equilibria"," ","in"," ","the"," ","meta"," ","ecosystem"," ","model"}],"*)"}],"\n",RowBox[
+{RowBox[{"ClearAll","[",RowBox[{"Pt",","," ","Nt",","," ","Lt",","," ","Ha",","," ","Pa",","," ","Na",","," ","\[Alpha]t",","," ","\[Alpha]a",","," ","\[Beta]a",","," ","e",",","\[Lambda]t",",","\[Lambda]a",","," ","\[Mu]t",","," ","\[Mu]a",","," ","\[Theta]t",",","\[Theta]a",",","\[Tau]a",","," ","\[Eta]a",","," ","\[Rho]",","," ","\[Epsilon]",",","\[Delta]",",","\[Gamma]",",","\[Psi]t",","," ","\[Psi]a",","," ","lt",","," ","la"}],"]"}],";"}]}],"\n",RowBox[
+{RowBox[{"eqns","=",RowBox[{"{",RowBox[{RowBox[{"0","==",RowBox[{RowBox[{"\[Alpha]t","*","Pt","*","Nt"}],"-",RowBox[
+{"\[Theta]t","*","Pt"}],"-",RowBox[{"\[Epsilon]","*","Pt"}]}]}],",","\n",RowBox[{"0","=="," ",RowBox[
+{"\[Lambda]t","+"," ",RowBox[{"\[Theta]t","*","\[Mu]t","*","Pt"}],"+",RowBox[{"\[Psi]a","*","Na"}],"-",RowBox[
+{"\[Alpha]t","*","Pt","*","Nt"}],"-",RowBox[{"lt","*","Nt"}],"-",RowBox[{"\[Psi]t","*","Nt"}]}]}],",","\n",RowBox[
+{"0","=="," ",RowBox[{RowBox[{"\[Epsilon]","*","Pt"}],"-",RowBox[{"\[Delta]","*","Lt","*","Ha"}],"-",RowBox[
+{"\[Gamma]","*","Lt"}]}]}],",","\n",RowBox[{"0","==",RowBox[{RowBox[{"\[Beta]a","*","e","*","Ha","*","Pa"}],"+",RowBox[
+{"\[Delta]","*","\[Rho]","*","Lt","*","Ha"}],"-",RowBox[{"\[Tau]a","*","Ha"}]}]}],",","\n",RowBox[
+{"0","==",RowBox[{RowBox[{"\[Alpha]a","*","Pa","*","Na"}],"-"," ",RowBox[{"\[Beta]a","*","Ha","*","Pa"}],"-",RowBox[
+{"\[Theta]a","*","Pa"}]}]}],",","\n",RowBox[{"0","==",RowBox[{"\[Lambda]a","+",RowBox[
+{"\[Psi]t","*","Nt"}],"+",RowBox[{"\[Gamma]","*","Lt"}],"+",RowBox[{"\[Tau]a","*","\[Eta]a","*","Ha"}],"+",RowBox[
+{"\[Theta]a","*","\[Mu]a","*","Pa"}],"-",RowBox[{"\[Alpha]a","*","Pa","*","Na"}],"-",RowBox[
+{"la","*","Na"}],"-",RowBox[{"\[Psi]a","*","Na"}]}]}]}],"}"}]}],";"}],"\n",RowBox[
+{"sol","=",RowBox[{"Simplify","[",RowBox[{"Solve","[",RowBox[{"eqns",","," ",RowBox[
+{"{",RowBox[{"Pt",","," ","Nt",",","Lt",",","  ","Ha",","," ","Pa",","," ","Na"}],"}"}]}],"]"}],"]"}]}]}],
+"Input",CellLabel -> "In[1]:= ",ExpressionUUID -> "40962b2b-4a14-4680-a196-f459c1de062a"],Cell[
+BoxData[
+TemplateBox[Association["shortenedBoxes" -> TagBox[RowBox[{"{",RowBox[{RowBox[{"{",RowBox[
+{RowBox[{"Pt","\[Rule]","0"}],",",RowBox[{"Nt","\[Rule]",FractionBox[RowBox[{RowBox[
+{"la"," ","\[Delta]"," ","\[Lambda]t"," ","\[Rho]"}],"+",RowBox[{"\[Delta]"," ",RowBox[
+{"(",RowBox[{"\[Lambda]a","+","\[Lambda]t"}],")"}]," ","\[Rho]"," ","\[Psi]a"}],"+",RowBox[
+{"\[Gamma]"," ",RowBox[{"(",RowBox[{"1","-",RowBox[{"\[Eta]a"," ","\[Rho]"}]}],")"}]," ","\[Tau]a"," ","\[Psi]a"}]}],
+RowBox[{"\[Delta]"," ","\[Rho]"," ",RowBox[{"(",RowBox[{RowBox[{"lt"," ","\[Psi]a"}],"+",RowBox[
+{"la"," ",RowBox[{"(",RowBox[{"lt","+","\[Psi]t"}],")"}]}]}],")"}]}]]}],",",RowBox[
+{"Lt","\[Rule]",FractionBox["\[Tau]a",RowBox[{"\[Delta]"," ","\[Rho]"}]]}],",",RowBox[
+{"Ha","\[Rule]",RowBox[{"-",FractionBox["\[Gamma]","\[Delta]"]}]}],",",RowBox[{"Pa","\[Rule]","0"}],",",RowBox[
+{"Na","\[Rule]",FractionBox[RowBox[{RowBox[{"lt"," ","\[Delta]"," ","\[Lambda]a"," ","\[Rho]"}],"+",RowBox[
+{"lt"," ","\[Gamma]"," ",RowBox[{"(",RowBox[{"1","-",RowBox[{"\[Eta]a"," ","\[Rho]"}]}],")"}]," ","\[Tau]a"}],"+",RowBox[
+{"\[Delta]"," ",RowBox[{"(",RowBox[{"\[Lambda]a","+","\[Lambda]t"}],")"}]," ","\[Rho]"," ","\[Psi]t"}],"+",RowBox[
+{"\[Gamma]"," ",RowBox[{"(",RowBox[{"1","-",RowBox[{"\[Eta]a"," ","\[Rho]"}]}],")"}]," ","\[Tau]a"," ","\[Psi]t"}]}],
+RowBox[{"\[Delta]"," ","\[Rho]"," ",RowBox[{"(",RowBox[{RowBox[{"lt"," ","\[Psi]a"}],"+",RowBox[
+{"la"," ",RowBox[{"(",RowBox[{"lt","+","\[Psi]t"}],")"}]}]}],")"}]}]]}]}],"}"}],",",TemplateBox[
+{"9"},"OutputSizeLimit`Skeleton"]}],"}"}],Function[Short[Slot[1],8]]],"line" -> 3,
+"sessionID" -> 27681388367291613772,"byteCount" -> 206304,"size" -> 8,"stored" -> False,
+"expr" -> Missing["NotStored"],"wrap" -> OutputSizeLimit`Defer,"version" -> 1],"OutputSizeLimitTemplate"],
+StandardForm],"Output",CellLabel -> "Out[3]= ",ExpressionUUID -> "af151072-8ae6-43c6-a3a1-28c32fbdeee1"]},
+Open],ExpressionUUID -> "db940b90-4802-4948-bb04-d3581ec75f3a"],Cell[
+CellGroupData[
+{Cell[
+BoxData[RowBox[{RowBox[{"(*",RowBox[{"selected"," ","feasible"," ","equilibrium"}],"*)"}],"\n",RowBox[
+{"sol","[",RowBox[{"[","8","]"}],"]"}]}]],"Input",ExpressionUUID -> "757bbd9b-7c18-4af9-a9eb-888a73edf955"],Cell[
+BoxData[
+RowBox[{"{",RowBox[{RowBox[{"Pt","\[Rule]",FractionBox[RowBox[{RowBox[{RowBox[{"-","la"}]," ","lt"," ",RowBox[
+{"(",RowBox[{"\[Epsilon]","+","\[Theta]t"}],")"}]}],"+",RowBox[{"la"," ","\[Alpha]t"," ","\[Lambda]t"}],"-",RowBox[
+{"lt"," ",RowBox[{"(",RowBox[{"\[Epsilon]","+","\[Theta]t"}],")"}]," ","\[Psi]a"}],"+",RowBox[
+{"\[Alpha]t"," ",RowBox[{"(",RowBox[{"\[Lambda]a","+","\[Lambda]t"}],")"}]," ","\[Psi]a"}],"-",RowBox[
+{"la"," ",RowBox[{"(",RowBox[{"\[Epsilon]","+","\[Theta]t"}],")"}]," ","\[Psi]t"}]}],
+RowBox[{"\[Alpha]t"," ",RowBox[{"(",RowBox[{RowBox[{"la"," ",RowBox[{"(",RowBox[{"\[Epsilon]","+","\[Theta]t","-",RowBox[
+{"\[Theta]t"," ","\[Mu]t"}]}],")"}]}],"-",RowBox[{"\[Theta]t"," ",RowBox[{"(",RowBox[
+{RowBox[{"-","1"}],"+","\[Mu]t"}],")"}]," ","\[Psi]a"}]}],")"}]}]]}],",",RowBox[{"Nt","\[Rule]",FractionBox[
+RowBox[{"\[Epsilon]","+","\[Theta]t"}],"\[Alpha]t"]}],",",RowBox[{"Lt","\[Rule]",RowBox[
+{"-",FractionBox[RowBox[{"\[Epsilon]"," ",RowBox[{"(",RowBox[{RowBox[{"la"," ","lt"," ",RowBox[
+{"(",RowBox[{"\[Epsilon]","+","\[Theta]t"}],")"}]}],"-",RowBox[{"la"," ","\[Alpha]t"," ","\[Lambda]t"}],"+",RowBox[
+{"lt"," ",RowBox[{"(",RowBox[{"\[Epsilon]","+","\[Theta]t"}],")"}]," ","\[Psi]a"}],"-",RowBox[
+{"\[Alpha]t"," ",RowBox[{"(",RowBox[{"\[Lambda]a","+","\[Lambda]t"}],")"}]," ","\[Psi]a"}],"+",RowBox[
+{"la"," ",RowBox[{"(",RowBox[{"\[Epsilon]","+","\[Theta]t"}],")"}]," ","\[Psi]t"}]}],")"}]}],
+RowBox[{"\[Alpha]t"," ","\[Gamma]"," ",RowBox[{"(",RowBox[{RowBox[{"la"," ",RowBox[
+{"(",RowBox[{"\[Epsilon]","+","\[Theta]t","-",RowBox[{"\[Theta]t"," ","\[Mu]t"}]}],")"}]}],"-",RowBox[
+{"\[Theta]t"," ",RowBox[{"(",RowBox[{RowBox[{"-","1"}],"+","\[Mu]t"}],")"}]," ","\[Psi]a"}]}],")"}]}]]}]}],",",RowBox[
+{"Ha","\[Rule]","0"}],",",RowBox[{"Pa","\[Rule]","0"}],",",RowBox[{"Na","\[Rule]",RowBox[
+{"-",FractionBox[RowBox[{RowBox[{"lt"," ","\[Epsilon]"," ",RowBox[{"(",RowBox[{"\[Epsilon]","+","\[Theta]t"}],")"}]}],"-",RowBox[
+{"\[Alpha]t"," ","\[Epsilon]"," ",RowBox[{"(",RowBox[{"\[Lambda]a","+","\[Lambda]t"}],")"}]}],"+",RowBox[
+{"\[Alpha]t"," ","\[Theta]t"," ","\[Lambda]a"," ",RowBox[{"(",RowBox[{RowBox[{"-","1"}],"+","\[Mu]t"}],")"}]}],"+",RowBox[
+{"\[Theta]t"," ",RowBox[{"(",RowBox[{"\[Epsilon]","+","\[Theta]t"}],")"}]," ",RowBox[
+{"(",RowBox[{RowBox[{"-","1"}],"+","\[Mu]t"}],")"}]," ","\[Psi]t"}]}],RowBox[{"\[Alpha]t"," ",RowBox[
+{"(",RowBox[{RowBox[{"la"," ",RowBox[{"(",RowBox[{"\[Epsilon]","+","\[Theta]t","-",RowBox[
+{"\[Theta]t"," ","\[Mu]t"}]}],")"}]}],"-",RowBox[{"\[Theta]t"," ",RowBox[{"(",RowBox[
+{RowBox[{"-","1"}],"+","\[Mu]t"}],")"}]," ","\[Psi]a"}]}],")"}]}]]}]}]}],"}"}],StandardForm],
+"Output",CellLabel -> "Out[24]= ",ExpressionUUID -> "786f33c3-1f24-48db-a4ca-64ebc82a0239"]},
+Open],ExpressionUUID -> "81f07808-0c34-41a3-ae17-b0a04070574d"],Cell[
+CellGroupData[
+{Cell[
+BoxData[RowBox[{"CForm","[","%","]"}]],"Input",CellLabel -> "In[11]:= ",ExpressionUUID -> "a9fc35ef-6139-44df-95e2-457d125a8db8"],Cell[
+
+"\<\"Rule(Pt,-0.5*(-2*e*la*lt*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Epsilon],2) - 4*e*la*lt*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t - \\n       2*e*la*lt*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Theta]t,2) + 2*e*la*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Lambda]t + \\n       2*e*la*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]t*\[Lambda]t + 2*e*la*lt*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Mu]t + \\n       2*e*la*lt*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Theta]t,2)*\[Mu]t - 2*e*la*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]t*\[Lambda]t*\[Mu]t - \\n       2*lt*Power(\[Alpha]a,2)*\[Delta]*Power(\[Epsilon],2)*\[Tau]a + 2*e*lt*Power(\[Alpha]a,2)*\[Delta]*Power(\[Epsilon],2)*\[Eta]a*\[Tau]a - \\n       4*lt*Power(\[Alpha]a,2)*\[Delta]*\[Epsilon]*\[Theta]t*\[Tau]a + 4*e*lt*Power(\[Alpha]a,2)*\[Delta]*\[Epsilon]*\[Eta]a*\[Theta]t*\[Tau]a - \\n       2*lt*Power(\[Alpha]a,2)*\[Delta]*Power(\[Theta]t,2)*\[Tau]a + 2*e*lt*Power(\[Alpha]a,2)*\[Delta]*\[Eta]a*Power(\[Theta]t,2)*\[Tau]a + \\n       2*Power(\[Alpha]a,2)*\[Alpha]t*\[Delta]*\[Epsilon]*\[Lambda]t*\[Tau]a - 2*e*Power(\[Alpha]a,2)*\[Alpha]t*\[Delta]*\[Epsilon]*\[Eta]a*\[Lambda]t*\[Tau]a + \\n       2*Power(\[Alpha]a,2)*\[Alpha]t*\[Delta]*\[Theta]t*\[Lambda]t*\[Tau]a - 2*e*Power(\[Alpha]a,2)*\[Alpha]t*\[Delta]*\[Eta]a*\[Theta]t*\[Lambda]t*\[Tau]a + \\n       2*lt*Power(\[Alpha]a,2)*\[Delta]*\[Epsilon]*\[Theta]t*\[Mu]t*\[Tau]a - 2*e*lt*Power(\[Alpha]a,2)*\[Delta]*\[Epsilon]*\[Eta]a*\[Theta]t*\[Mu]t*\[Tau]a + \\n       2*lt*Power(\[Alpha]a,2)*\[Delta]*Power(\[Theta]t,2)*\[Mu]t*\[Tau]a - \\n       2*e*lt*Power(\[Alpha]a,2)*\[Delta]*\[Eta]a*Power(\[Theta]t,2)*\[Mu]t*\[Tau]a - 2*Power(\[Alpha]a,2)*\[Alpha]t*\[Delta]*\[Theta]t*\[Lambda]t*\[Mu]t*\[Tau]a + \\n       2*e*Power(\[Alpha]a,2)*\[Alpha]t*\[Delta]*\[Eta]a*\[Theta]t*\[Lambda]t*\[Mu]t*\[Tau]a - e*la*\[Alpha]t*Power(\[Beta]a,2)*\[Gamma]*\[Epsilon]*\[Psi]a - \\n       2*e*lt*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Epsilon],2)*\[Psi]a + e*la*\[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]a*\[Psi]a - \\n       e*la*\[Alpha]t*Power(\[Beta]a,2)*\[Gamma]*\[Theta]t*\[Psi]a - 4*e*lt*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Psi]a + \\n       e*la*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]a*\[Theta]t*\[Psi]a - 2*e*lt*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Theta]t,2)*\[Psi]a + \\n       e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Lambda]a*\[Psi]a + e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]t*\[Lambda]a*\[Psi]a + 2*e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Lambda]t*\[Psi]a + \\n       2*e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]t*\[Lambda]t*\[Psi]a + e*la*\[Alpha]t*Power(\[Beta]a,2)*\[Gamma]*\[Theta]t*\[Mu]t*\[Psi]a + \\n       2*e*lt*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Mu]t*\[Psi]a - e*la*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]a*\[Theta]t*\[Mu]t*\[Psi]a + \\n       2*e*lt*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Theta]t,2)*\[Mu]t*\[Psi]a - e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]t*\[Lambda]a*\[Mu]t*\[Psi]a - \\n       2*e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]t*\[Lambda]t*\[Mu]t*\[Psi]a + lt*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Epsilon],2)*\[Rho]*\[Psi]a + \\n       lt*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Rho]*\[Psi]a - \[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Lambda]t*\[Rho]*\[Psi]a - \[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Epsilon]*\[Tau]a*\[Psi]a + \\n       e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Epsilon]*\[Eta]a*\[Tau]a*\[Psi]a + \[Alpha]a*\[Alpha]t*\[Delta]*\[Epsilon]*\[Theta]a*\[Tau]a*\[Psi]a - 2*e*\[Alpha]a*\[Alpha]t*\[Delta]*\[Epsilon]*\[Eta]a*\[Theta]a*\[Tau]a*\[Psi]a - \\n       \[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Theta]t*\[Tau]a*\[Psi]a + e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Eta]a*\[Theta]t*\[Tau]a*\[Psi]a + \[Alpha]a*\[Alpha]t*\[Delta]*\[Theta]a*\[Theta]t*\[Tau]a*\[Psi]a - \\n       2*e*\[Alpha]a*\[Alpha]t*\[Delta]*\[Eta]a*\[Theta]a*\[Theta]t*\[Tau]a*\[Psi]a + \[Alpha]a*\[Alpha]t*\[Delta]*\[Epsilon]*\[Theta]a*\[Mu]a*\[Tau]a*\[Psi]a + \[Alpha]a*\[Alpha]t*\[Delta]*\[Theta]a*\[Theta]t*\[Mu]a*\[Tau]a*\[Psi]a + \\n       \[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Theta]t*\[Mu]t*\[Tau]a*\[Psi]a - e*\[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Eta]a*\[Theta]t*\[Mu]t*\[Tau]a*\[Psi]a - \\n       \[Alpha]a*\[Alpha]t*\[Delta]*\[Theta]a*\[Theta]t*\[Mu]t*\[Tau]a*\[Psi]a + 2*e*\[Alpha]a*\[Alpha]t*\[Delta]*\[Eta]a*\[Theta]a*\[Theta]t*\[Mu]t*\[Tau]a*\[Psi]a - \\n       \[Alpha]a*\[Alpha]t*\[Delta]*\[Theta]a*\[Theta]t*\[Mu]a*\[Mu]t*\[Tau]a*\[Psi]a + e*\[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]a*Power(\[Psi]a,2) - \\n       e*\[Alpha]t*Power(\[Beta]a,2)*\[Gamma]*\[Theta]t*Power(\[Psi]a,2) + e*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]a*\[Theta]t*Power(\[Psi]a,2) + \\n       e*\[Alpha]t*Power(\[Beta]a,2)*\[Gamma]*\[Theta]t*\[Mu]t*Power(\[Psi]a,2) - e*\[Alpha]t*\[Beta]a*\[Delta]*\[Theta]a*\[Theta]t*\[Mu]t*Power(\[Psi]a,2) - \\n       \[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]a*\[Mu]a*\[Rho]*Power(\[Psi]a,2) - 2*e*la*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Epsilon],2)*\[Psi]t - \\n       4*e*la*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Psi]t - 2*e*la*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Theta]t,2)*\[Psi]t + \\n       2*e*la*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Mu]t*\[Psi]t + 2*e*la*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Theta]t,2)*\[Mu]t*\[Psi]t - \\n       2*Power(\[Alpha]a,2)*\[Delta]*Power(\[Epsilon],2)*\[Tau]a*\[Psi]t + 2*e*Power(\[Alpha]a,2)*\[Delta]*Power(\[Epsilon],2)*\[Eta]a*\[Tau]a*\[Psi]t - \\n       4*Power(\[Alpha]a,2)*\[Delta]*\[Epsilon]*\[Theta]t*\[Tau]a*\[Psi]t + 4*e*Power(\[Alpha]a,2)*\[Delta]*\[Epsilon]*\[Eta]a*\[Theta]t*\[Tau]a*\[Psi]t - \\n       2*Power(\[Alpha]a,2)*\[Delta]*Power(\[Theta]t,2)*\[Tau]a*\[Psi]t + 2*e*Power(\[Alpha]a,2)*\[Delta]*\[Eta]a*Power(\[Theta]t,2)*\[Tau]a*\[Psi]t + \\n       2*Power(\[Alpha]a,2)*\[Delta]*\[Epsilon]*\[Theta]t*\[Mu]t*\[Tau]a*\[Psi]t - 2*e*Power(\[Alpha]a,2)*\[Delta]*\[Epsilon]*\[Eta]a*\[Theta]t*\[Mu]t*\[Tau]a*\[Psi]t + \\n       2*Power(\[Alpha]a,2)*\[Delta]*Power(\[Theta]t,2)*\[Mu]t*\[Tau]a*\[Psi]t - \\n       2*e*Power(\[Alpha]a,2)*\[Delta]*\[Eta]a*Power(\[Theta]t,2)*\[Mu]t*\[Tau]a*\[Psi]t - e*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Epsilon],2)*\[Psi]a*\[Psi]t - \\n       2*e*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Psi]a*\[Psi]t - e*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Theta]t,2)*\[Psi]a*\[Psi]t + \\n       e*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Mu]t*\[Psi]a*\[Psi]t + e*\[Alpha]a*\[Beta]a*\[Delta]*Power(\[Theta]t,2)*\[Mu]t*\[Psi]a*\[Psi]t + \\n       \[Alpha]a*\[Beta]a*\[Delta]*Power(\[Epsilon],2)*\[Rho]*\[Psi]a*\[Psi]t + \[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Rho]*\[Psi]a*\[Psi]t + \\n       \[Psi]a*Sqrt(4*\[Alpha]a*\[Alpha]t*\[Delta]*(\[Alpha]a*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*\[Tau]a - \[Beta]a*\[Epsilon]*\[Rho]*\[Psi]a + \\n             e*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*(la*\[Beta]a - \[Alpha]a*\[Eta]a*\[Tau]a + \[Beta]a*\[Psi]a))*\\n           (-(e*(lt*Power(\[Beta]a,2)*\[Gamma]*\[Epsilon]*(\[Epsilon] + \[Theta]t) - \\n                  \[Alpha]t*(Power(\[Beta]a,2)*\[Gamma]*(\[Epsilon]*(\[Lambda]a + \[Lambda]t) - \[Theta]t*\[Lambda]a*(-1 + \[Mu]t)) + \\n                     \[Delta]*\[Eta]a*Power(\[Theta]a,2)*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*\[Tau]a - \\n                     \[Beta]a*\[Theta]a*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*(\[Delta]*\[Lambda]a + \[Gamma]*\[Eta]a*\[Tau]a)) + \\n                  \[Beta]a*(\[Epsilon] + \[Theta]t)*(\[Beta]a*\[Gamma]*\[Theta]t*(-1 + \[Mu]t) + \[Delta]*\[Theta]a*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t))*\[Psi]t)) + \\n             \[Theta]a*\[Mu]a*(lt*\[Beta]a*\[Delta]*\[Epsilon]*(\[Epsilon] + \[Theta]t)*\[Rho] - \\n                \[Alpha]t*(\[Beta]a*\[Delta]*\[Epsilon]*\[Lambda]t*\[Rho] - \[Beta]a*\[Gamma]*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*\[Tau]a + \\n                   \[Delta]*\[Theta]a*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*\[Tau]a) + \[Beta]a*\[Delta]*\[Epsilon]*(\[Epsilon] + \[Theta]t)*\[Rho]*\[Psi]t)) + \\n          Power(lt*\[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*(\[Epsilon] + \[Theta]t)*\[Rho] - \[Alpha]a*\[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Lambda]t*\[Rho] + \[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Epsilon]*\[Tau]a - \\n            \[Alpha]a*\[Alpha]t*\[Delta]*\[Epsilon]*\[Theta]a*\[Tau]a + \[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Theta]t*\[Tau]a - \[Alpha]a*\[Alpha]t*\[Delta]*\[Theta]a*\[Theta]t*\[Tau]a - \\n            \[Alpha]a*\[Alpha]t*\[Delta]*\[Epsilon]*\[Theta]a*\[Mu]a*\[Tau]a - \[Alpha]a*\[Alpha]t*\[Delta]*\[Theta]a*\[Theta]t*\[Mu]a*\[Tau]a - \[Alpha]a*\[Alpha]t*\[Beta]a*\[Gamma]*\[Theta]t*\[Mu]t*\[Tau]a + \\n            \[Alpha]a*\[Alpha]t*\[Delta]*\[Theta]a*\[Theta]t*\[Mu]t*\[Tau]a + \[Alpha]a*\[Alpha]t*\[Delta]*\[Theta]a*\[Theta]t*\[Mu]a*\[Mu]t*\[Tau]a + \[Alpha]t*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]a*\[Mu]a*\[Rho]*\[Psi]a + \\n            \[Alpha]a*\[Beta]a*\[Delta]*Power(\[Epsilon],2)*\[Rho]*\[Psi]t + \[Alpha]a*\[Beta]a*\[Delta]*\[Epsilon]*\[Theta]t*\[Rho]*\[Psi]t + \\n            e*(la*\[Alpha]t*\[Beta]a*(\[Beta]a*\[Gamma] - \[Delta]*\[Theta]a)*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t) - \\n               \[Alpha]t*\[Beta]a*(\[Beta]a*\[Gamma]*\[Theta]t*(-1 + \[Mu]t) + \[Delta]*\[Theta]a*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t))*\[Psi]a - \\n               \[Alpha]a*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*\\n                (\[Alpha]t*(\[Beta]a*\[Delta]*\[Lambda]a + \[Beta]a*\[Gamma]*\[Eta]a*\[Tau]a - 2*\[Delta]*\[Eta]a*\[Theta]a*\[Tau]a) + \[Beta]a*\[Delta]*(\[Epsilon] + \[Theta]t)*\[Psi]t)),2)))/\\n     (\[Alpha]a*\[Alpha]t*\[Delta]*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*(-(\[Alpha]a*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*\[Tau]a) + \[Beta]a*\[Epsilon]*\[Rho]*\[Psi]a - \\n         e*(\[Epsilon] + \[Theta]t - \[Theta]t*\[Mu]t)*(la*\[Beta]a - \[Alpha]a*\[Eta]a*\[Tau]a + \[Beta]a*\[Psi]a))))\"\>",
+"Output",CellLabel -> "Out[11]//CForm= ",ExpressionUUID -> "de4bdff0-09d8-4243-a480-ff33896b719f"]},
+Open],ExpressionUUID -> "d45a68ab-9cf2-43bd-a2c3-f4c8c8cc4418"],Cell[
+"\<\>","Input",
+ExpressionUUID -> "add0319d-d0d3-4001-b259-682cf9dd0de5"],Cell[
+CellGroupData[{Cell[
+BoxData[
+{RowBox[{RowBox[{"(*",RowBox[{"Calculate"," ","the"," ","Jacobian"," ","matrix"," ","to"," ","evaluate"," ","local"," ","equilibrium"," ","stability"}],"*)"}],"\n",RowBox[
+{"a","=",RowBox[{"{",RowBox[{RowBox[{RowBox[{"\[Alpha]t","*","Pt","*","Nt"}],"-",RowBox[
+{"\[Theta]t","*","Pt"}],"-",RowBox[{"\[Epsilon]","*","Pt"}]}],",","\n",RowBox[{"\[Lambda]t","+"," ",RowBox[
+{"\[Theta]t","*","\[Mu]t","*","Pt"}],"+",RowBox[{"\[Psi]a","*","Na"}],"-",RowBox[
+{"\[Alpha]t","*","Pt","*","Nt"}],"-",RowBox[{"lt","*","Nt"}],"-",RowBox[{"\[Psi]t","*","Nt"}]}],",","\n",RowBox[
+{RowBox[{"\[Epsilon]","*","Pt"}],"-",RowBox[{"\[Delta]","*","Lt","*","Ha"}],"-",RowBox[
+{"\[Gamma]","*","Lt"}]}],",","\n",RowBox[{RowBox[{"\[Beta]a","*","e","*","Ha","*","Pa"}],"+",RowBox[
+{"\[Delta]","*","\[Rho]","*","Lt","*","Ha"}],"-",RowBox[{"\[Tau]a","*","Ha"}]}],",","\n",RowBox[
+{RowBox[{"\[Alpha]a","*","Pa","*","Na"}],"-"," ",RowBox[{"\[Beta]a","*","Ha","*","Pa"}],"-",RowBox[
+{"\[Theta]a","*","Pa"}]}],",","\n",RowBox[{"\[Lambda]a","+",RowBox[{"\[Psi]t","*","Nt"}],"+",RowBox[
+{"\[Gamma]","*","Lt"}],"+",RowBox[{"\[Tau]a","*","\[Eta]a","*","Ha"}],"+",RowBox[
+{"\[Theta]a","*","\[Mu]a","*","Pa"}],"-",RowBox[{"\[Alpha]a","*","Pa","*","Na"}],"-",RowBox[
+{"la","*","Na"}],"-",RowBox[{"\[Psi]a","*","Na"}]}]}],"}"}]}]}],"\n",RowBox[{"b","=",RowBox[
+{"{",RowBox[{"Pt",","," ","Nt",",","Lt",","," ","Ha",","," ","Pa",","," ","Na"}],"}"}]}],"\n",RowBox[
+{"jac","=",RowBox[{"FullSimplify","[",RowBox[{"Outer","[",RowBox[{"D","[",RowBox[
+{"a",",",RowBox[{"{","b","}"}]}],"]"}],"]"}],"]"}]}]}],"Input",ExpressionUUID -> "1b8a2fba-4e69-4545-9174-cfd6e72e0e90"],Cell[
+BoxData[
+RowBox[{"{",RowBox[{RowBox[{RowBox[{"Nt"," ","Pt"," ","\[Alpha]t"}],"-",RowBox[{"Pt"," ","\[Epsilon]"}],"-",RowBox[
+{"Pt"," ","\[Theta]t"}]}],",",RowBox[{RowBox[{RowBox[{"-","lt"}]," ","Nt"}],"-",RowBox[
+{"Nt"," ","Pt"," ","\[Alpha]t"}],"+","\[Lambda]t","+",RowBox[{"Pt"," ","\[Theta]t"," ","\[Mu]t"}],"+",RowBox[
+{"Na"," ","\[Psi]a"}],"-",RowBox[{"Nt"," ","\[Psi]t"}]}],",",RowBox[{RowBox[{RowBox[
+{"-","Lt"}]," ","\[Gamma]"}],"-",RowBox[{"Ha"," ","Lt"," ","\[Delta]"}],"+",RowBox[
+{"Pt"," ","\[Epsilon]"}]}],",",RowBox[{RowBox[{"e"," ","Ha"," ","Pa"," ","\[Beta]a"}],"+",RowBox[
+{"Ha"," ","Lt"," ","\[Delta]"," ","\[Rho]"}],"-",RowBox[{"Ha"," ","\[Tau]a"}]}],",",RowBox[
+{RowBox[{"Na"," ","Pa"," ","\[Alpha]a"}],"-",RowBox[{"Ha"," ","Pa"," ","\[Beta]a"}],"-",RowBox[
+{"Pa"," ","\[Theta]a"}]}],",",RowBox[{RowBox[{RowBox[{"-","la"}]," ","Na"}],"-",RowBox[
+{"Na"," ","Pa"," ","\[Alpha]a"}],"+",RowBox[{"Lt"," ","\[Gamma]"}],"+","\[Lambda]a","+",RowBox[
+{"Pa"," ","\[Theta]a"," ","\[Mu]a"}],"+",RowBox[{"Ha"," ","\[Eta]a"," ","\[Tau]a"}],"-",RowBox[
+{"Na"," ","\[Psi]a"}],"+",RowBox[{"Nt"," ","\[Psi]t"}]}]}],"}"}],StandardForm],"Output",
+CellLabel -> "Out[29]= ",ExpressionUUID -> "fe7a6234-caf5-4c15-b0bd-a1b1fc2702f3"],Cell[
+BoxData[
+RowBox[{"{",RowBox[{"Pt",",","Nt",",","Lt",",","Ha",",","Pa",",","Na"}],"}"}],StandardForm],
+"Output",CellLabel -> "Out[30]= ",ExpressionUUID -> "df3f8f7d-0861-4265-933b-99404f531286"],Cell[
+BoxData[
+RowBox[{RowBox[{"{",RowBox[{RowBox[{"{",RowBox[{RowBox[{RowBox[{"Nt"," ","\[Alpha]t"}],"-","\[Epsilon]","-","\[Theta]t"}],",",RowBox[
+{"Pt"," ","\[Alpha]t"}],",","0",",","0",",","0",",","0"}],"}"}],",",RowBox[{"{",RowBox[
+{RowBox[{RowBox[{RowBox[{"-","Nt"}]," ","\[Alpha]t"}],"+",RowBox[{"\[Theta]t"," ","\[Mu]t"}]}],",",RowBox[
+{RowBox[{"-","lt"}],"-",RowBox[{"Pt"," ","\[Alpha]t"}],"-","\[Psi]t"}],",","0",",","0",",","0",",","\[Psi]a"}],"}"}],",",RowBox[
+{"{",RowBox[{"\[Epsilon]",",","0",",",RowBox[{RowBox[{"-","\[Gamma]"}],"-",RowBox[
+{"Ha"," ","\[Delta]"}]}],",",RowBox[{RowBox[{"-","Lt"}]," ","\[Delta]"}],",","0",",","0"}],"}"}],",",RowBox[
+{"{",RowBox[{"0",",","0",",",RowBox[{"Ha"," ","\[Delta]"," ","\[Rho]"}],",",RowBox[
+{RowBox[{"e"," ","Pa"," ","\[Beta]a"}],"+",RowBox[{"Lt"," ","\[Delta]"," ","\[Rho]"}],"-","\[Tau]a"}],",",RowBox[
+{"e"," ","Ha"," ","\[Beta]a"}],",","0"}],"}"}],",",RowBox[{"{",RowBox[{"0",",","0",",","0",",",RowBox[
+{RowBox[{"-","Pa"}]," ","\[Beta]a"}],",",RowBox[{RowBox[{"Na"," ","\[Alpha]a"}],"-",RowBox[
+{"Ha"," ","\[Beta]a"}],"-","\[Theta]a"}],",",RowBox[{"Pa"," ","\[Alpha]a"}]}],"}"}],",",RowBox[
+{"{",RowBox[{"0",",","\[Psi]t",",","\[Gamma]",",",RowBox[{"\[Eta]a"," ","\[Tau]a"}],",",RowBox[
+{RowBox[{RowBox[{"-","Na"}]," ","\[Alpha]a"}],"+",RowBox[{"\[Theta]a"," ","\[Mu]a"}]}],",",RowBox[
+{RowBox[{"-","la"}],"-",RowBox[{"Pa"," ","\[Alpha]a"}],"-","\[Psi]a"}]}],"}"}]}],"}"}],"[","]"}],
+StandardForm],"Output",CellLabel -> "Out[31]= ",ExpressionUUID -> "8bd63ac1-208f-43dd-a0ea-0493a1f6f3c4"]},
+Open],ExpressionUUID -> "bef32871-4bf4-42ea-bce0-2865355c23f2"],Cell[
+CellGroupData[
+{Cell[
+BoxData[RowBox[{"CForm","[","%","]"}]],"Input",CellLabel -> "In[32]:= ",ExpressionUUID -> "62cf019f-b8ff-4bc0-aedd-79f73a265325"],Cell[
+
+"\<\"List(List(Nt*\[Alpha]t - \[Epsilon] - \[Theta]t,Pt*\[Alpha]t,0,0,0,0),\\n    List(-(Nt*\[Alpha]t) + \[Theta]t*\[Mu]t,-lt - Pt*\[Alpha]t - \[Psi]t,0,0,0,\[Psi]a),List(\[Epsilon],0,-\[Gamma] - Ha*\[Delta],-(Lt*\[Delta]),0,0),\\n    List(0,0,Ha*\[Delta]*\[Rho],e*Pa*\[Beta]a + Lt*\[Delta]*\[Rho] - \[Tau]a,e*Ha*\[Beta]a,0),\\n    List(0,0,0,-(Pa*\[Beta]a),Na*\[Alpha]a - Ha*\[Beta]a - \[Theta]a,Pa*\[Alpha]a),\\n    List(0,\[Psi]t,\[Gamma],\[Eta]a*\[Tau]a,-(Na*\[Alpha]a) + \[Theta]a*\[Mu]a,-la - Pa*\[Alpha]a - \[Psi]a))()\"\>",
+"Output",CellLabel -> "Out[32]//CForm= ",ExpressionUUID -> "640e6cb9-1d06-47f7-a6a1-f08758de09ae"]},
+Open],ExpressionUUID -> "fc405a87-31f0-41b3-893d-06175890896d"],Cell[
+BoxData[RowBox[
+{"(*",RowBox[{RowBox[{"The"," ","eiganvalues"," ","are"," ","too"," ","complex"," ","to"," ","solve"," ","analytically"," ","here"}],",",RowBox[
+{"so"," ","we"," ","solved"," ","for"," ","eiganvalues"," ","numerically"," ","in"," ","R"}]}],"*)"}]],
+"Input",ExpressionUUID -> "57b29b7d-5df1-4316-923a-c1340cba2136"]},StyleDefinitions -> "Default.nb",
+FrontEndVersion -> "13.3 for Wolfram Cloud 1.66.0.3 (August 29, 2023)"]
