@@ -54,8 +54,7 @@ combine_data <- function(join_data){
            invertebrate_biomass, 
            tn, 
            conductivity, 
-           embeddedness, 
-           tds,
+           embeddedness,
            ept_index, 
            periphyton_biomass, 
            shredder)
@@ -89,7 +88,6 @@ rescale_data <- function(data){
            invertebrate_biomass = min_max_scale(data$invertebrate_biomass),
            tn = min_max_scale(data$tn),
            conductivity = min_max_scale(data$conductivity),
-           tds = min_max_scale(data$tds),
            embeddedness = min_max_scale(data$embeddedness),
            ept_index = min_max_scale(data$ept_index),
            periphyton_biomass = min_max_scale(data$periphyton_biomass),
@@ -921,118 +919,6 @@ embeddedness_models <- function(data){
   return(model_summary_df)
 }
 
-# Model 8: Total dissolved solids
-tds_models <- function(data){
-  
-  # version null
-  tds_null_model <- lm(tds ~ 
-                         1, 
-                       data)  
-  null_mod_summary <- extract_model_summary(tds_null_model, 
-                                            "null_mod", 
-                                            "tds")
-  # version 1
-  tds_model1 <- lm(tds ~ 
-                     total_disturbance + 
-                     wolmanD50 + 
-                     percent_barren, 
-                   data)  
-  mod1_summary <- extract_model_summary(tds_model1, 
-                                        "mod1", 
-                                        "tds")
-  
-  # version 2
-  tds_model2 <- lm(tds ~ 
-                     total_road_density + 
-                     wolmanD50 + 
-                     percent_barren, 
-                   data)  
-  mod2_summary <- extract_model_summary(tds_model2, 
-                                        "mod2", 
-                                        "tds")
-  
-  # version 3
-  tds_model3 <- lm(tds ~ 
-                     high_human_impact + 
-                     wolmanD50 + 
-                     percent_barren, 
-                   data)  
-  mod3_summary <- extract_model_summary(tds_model3, 
-                                        "mod3", 
-                                        "tds")
-  
-  # version 4
-  tds_model4 <- lm(tds ~ 
-                     total_road_density + 
-                     high_human_impact + 
-                     wolmanD50 + 
-                     percent_barren, 
-                   data)  
-  mod4_summary <- extract_model_summary(tds_model4, 
-                                        "mod4", 
-                                        "tds")
-  
-  # version 5
-  tds_model5 <- lm(tds ~ 
-                     total_disturbance + 
-                     total_road_density + 
-                     wolmanD50 + 
-                     percent_barren, 
-                   data)  
-  mod5_summary <- extract_model_summary(tds_model5, 
-                                        "mod5", 
-                                        "tds")
-  
-  # version 6
-  tds_model6 <- lm(tds ~ 
-                     total_disturbance + 
-                     high_human_impact + 
-                     wolmanD50 + 
-                     percent_barren, 
-                   data)  
-  mod6_summary <- extract_model_summary(tds_model6, 
-                                        "mod6", 
-                                        "tds")
-  
-  # version 7
-  tds_model7 <- lm(tds ~ 
-                     total_disturbance + 
-                     total_road_density + 
-                     high_human_impact + 
-                     wolmanD50 + 
-                     percent_barren, 
-                   data)  
-  mod7_summary <- extract_model_summary(tds_model7, 
-                                        "mod7", 
-                                        "tds")
-  
-  # version 8
-  tds_model8 <- lm(tds ~ 
-                     wetted_width + 
-                     wolmanD50 + 
-                     percent_barren +
-                     percent_lake, 
-                   data)  
-  mod8_summary <- extract_model_summary(tds_model8, 
-                                        "mod8", 
-                                        "tds")
-  
-  # combine dataframes for all models
-  model_summary_df <- bind_rows(null_mod_summary,
-                                mod1_summary,
-                                mod2_summary,
-                                mod3_summary,
-                                mod4_summary,
-                                mod5_summary,
-                                mod6_summary,
-                                mod7_summary,
-                                mod8_summary)
-  
-  return(model_summary_df)
-}
-
-
-
 # 4) Compare all models at each spatial extent ----
 
 # "all models" function
@@ -1060,9 +946,6 @@ run_all_models <- function(data){
   embeddedness_model_output <- embeddedness_models(data)
   embeddedness_model_df <- embeddedness_model_output[1:10] |> data.frame() 
   
-  tds_model_output <- tds_models(data)
-  tds_model_df <- tds_model_output[1:10] |> data.frame() 
-  
   # combine all data frames together
   all_models_df <- bind_rows(invert_model_df, 
                              ept_model_df, 
@@ -1070,8 +953,7 @@ run_all_models <- function(data){
                              shredder_model_df,
                              nitrogen_model_df, 
                              conductivity_model_df,
-                             embeddedness_model_df,
-                             tds_model_df)
+                             embeddedness_model_df)
   
   return(all_models_df)
 }
@@ -1128,7 +1010,6 @@ formatted_model_output <- model_summary %>%
   mutate(across("model", str_replace, "invertebrate_biomass", "invertebrate biomass")) %>% 
   mutate(across("model", str_replace, "nitrogen", "total nitrogen")) %>% 
   mutate(across("model", str_replace, "shredders", "% shredders")) %>% 
-  mutate(across("model", str_replace, "tds", "total dissolved solids")) %>% 
   mutate(across("scale", str_replace, "sub-catchment", "catchment")) %>%
   mutate(across("model_num", str_replace, "null_mod", "null")) %>%
   mutate(across("model_num", str_replace, "mod1", "1")) %>%
@@ -1174,7 +1055,6 @@ plotting_data <- model_summary %>%
   mutate(dplyr::across("model", str_replace, "ept_index", "EPT index")) %>% 
   mutate(dplyr::across("model", str_replace, "invertebrate_biomass", "invertebrate biomass")) %>% 
   mutate(dplyr::across("model", str_replace, "nitrogen", "total nitrogen")) %>% 
-  mutate(dplyr::across("model", str_replace, "tds", "total dissolved solids")) %>% 
   mutate(dplyr::across("model", str_replace, "shredders", "% shredders"))
 
 # plot on vertical histogram
