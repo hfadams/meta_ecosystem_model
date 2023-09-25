@@ -95,7 +95,7 @@ tss_calcs <- tss %>%
 # calculate method detection limit (MDL) for doc and tdn based on field blanks
 mdl_doc <- doc %>% 
   filter(sample_number == "blank") %>% 
-  mutate(doc = mean(doc_mgl)) %>% 
+  mutate(doc = 2*sd(doc_mgl)) %>% 
   select(doc) %>% 
   distinct()
 samples_under_doc_mdl <- doc %>% 
@@ -104,7 +104,7 @@ samples_under_doc_mdl <- doc %>%
 
 mdl_tn <- tn %>% 
   filter(sample_number == "blank") %>% 
-  mutate(tn = mean(tn_mgl)) %>% 
+  mutate(tn = 2*sd(tn_mgl)) %>% 
   select(tn) %>% 
   distinct()
 samples_under_tn_mdl <- tn %>% 
