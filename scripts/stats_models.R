@@ -697,102 +697,102 @@ nitrogen_models <- function(data){
   return(model_summary_df)
 }
 
-# Model 6: Electrical conductivity
+# Model 6: Specific conductivity
 conductivity_models <- function(data){
   
   # version null
-  electrical_conductivity_null_model <- lm(conductivity ~ 
+  specific_conductivity_null_model <- lm(conductivity ~ 
                                              1, 
                                            data)
-  null_mod_summary <- extract_model_summary(electrical_conductivity_null_model, 
+  null_mod_summary <- extract_model_summary(specific_conductivity_null_model, 
                                             "null_mod", 
-                                            "electrical_conductivity")
+                                            "specific_conductivity")
   
   # version 1
-  electrical_conductivity_model1 <- lm(conductivity ~ 
+  specific_conductivity_model1 <- lm(conductivity ~ 
                                          total_disturbance + 
                                          wetted_width + 
                                          percent_wetland, 
                                        data)
-  mod1_summary <- extract_model_summary(electrical_conductivity_model1, 
+  mod1_summary <- extract_model_summary(specific_conductivity_model1, 
                                         "mod1", 
-                                        "electrical_conductivity")
+                                        "specific_conductivity")
   
   # version 2
-  electrical_conductivity_model2 <- lm(conductivity ~ 
+  specific_conductivity_model2 <- lm(conductivity ~ 
                                          total_road_density + 
                                          wetted_width + 
                                          percent_wetland, 
                                        data)
-  mod2_summary <- extract_model_summary(electrical_conductivity_model2, 
+  mod2_summary <- extract_model_summary(specific_conductivity_model2, 
                                         "mod2", 
-                                        "electrical_conductivity")
+                                        "specific_conductivity")
   
   # version 3
-  electrical_conductivity_model3 <- lm(conductivity ~ 
+  specific_conductivity_model3 <- lm(conductivity ~ 
                                          high_human_impact +
                                          wetted_width + 
                                          percent_wetland, 
                                        data)
-  mod3_summary <- extract_model_summary(electrical_conductivity_model3, 
+  mod3_summary <- extract_model_summary(specific_conductivity_model3, 
                                         "mod3", 
-                                        "electrical_conductivity")
+                                        "specific_conductivity")
   
   # version 4
-  electrical_conductivity_model4 <- lm(conductivity ~ 
+  specific_conductivity_model4 <- lm(conductivity ~ 
                                          total_road_density +
                                          high_human_impact +
                                          wetted_width + 
                                          percent_wetland, 
                                        data)
-  mod4_summary <- extract_model_summary(electrical_conductivity_model4, 
+  mod4_summary <- extract_model_summary(specific_conductivity_model4, 
                                         "mod4", 
-                                        "electrical_conductivity")
+                                        "specific_conductivity")
   
   # version 5
-  electrical_conductivity_model5 <- lm(conductivity ~ 
+  specific_conductivity_model5 <- lm(conductivity ~ 
                                          total_disturbance + 
                                          total_road_density +
                                          wetted_width + 
                                          percent_wetland, 
                                        data)
-  mod5_summary <- extract_model_summary(electrical_conductivity_model5, 
+  mod5_summary <- extract_model_summary(specific_conductivity_model5, 
                                         "mod5", 
-                                        "electrical_conductivity")
+                                        "specific_conductivity")
   
   # version 6
-  electrical_conductivity_model6 <- lm(conductivity ~ 
+  specific_conductivity_model6 <- lm(conductivity ~ 
                                          total_disturbance + 
                                          high_human_impact + 
                                          wetted_width + 
                                          percent_wetland, 
                                        data)
-  mod6_summary <- extract_model_summary(electrical_conductivity_model6, 
+  mod6_summary <- extract_model_summary(specific_conductivity_model6, 
                                         "mod6", 
-                                        "electrical_conductivity")
+                                        "specific_conductivity")
   
   # version 7
-  electrical_conductivity_model7 <- lm(conductivity ~ 
+  specific_conductivity_model7 <- lm(conductivity ~ 
                                          total_disturbance + 
                                          total_road_density + 
                                          high_human_impact + 
                                          wetted_width + 
                                          percent_wetland, 
                                        data)
-  mod7_summary <- extract_model_summary(electrical_conductivity_model7, 
+  mod7_summary <- extract_model_summary(specific_conductivity_model7, 
                                         "mod7", 
-                                        "electrical_conductivity")
+                                        "specific_conductivity")
   
   # version 8
-  electrical_conductivity_model8 <- lm(conductivity ~ 
+  specific_conductivity_model8 <- lm(conductivity ~ 
                                          wetted_width + 
                                          canopy + 
                                          percent_wetland + 
                                          percent_lake, 
                                        data)
-  mod8_summary <- extract_model_summary(electrical_conductivity_model8, 
+  mod8_summary <- extract_model_summary(specific_conductivity_model8, 
                                         "mod8", 
-                                        "electrical_conductivity")
+                                        "specific_conductivity")
   
   # combine dataframes for all models
   model_summary_df <- bind_rows(null_mod_summary,
@@ -1051,10 +1051,10 @@ plotting_data <- model_summary %>%
   mutate(dplyr::across("predictor_var", str_replace, "percent_lake", "% lake")) %>% 
   mutate(dplyr::across("predictor_var", str_replace, "percent_wetland", "% wetland")) %>% 
   mutate(dplyr::across("model", str_replace, "periphyton_biomass", "periphyton biomass")) %>% 
-  mutate(dplyr::across("model", str_replace, "electrical_conductivity", "specific conductivity")) %>% 
+  mutate(dplyr::across("model", str_replace, "specific_conductivity", "specific conductivity")) %>% 
   mutate(dplyr::across("model", str_replace, "ept_index", "EPT index")) %>% 
   mutate(dplyr::across("model", str_replace, "invertebrate_biomass", "invertebrate biomass")) %>% 
-  mutate(dplyr::across("model", str_replace, "nitrogen", "total nitrogen")) %>% 
+  mutate(dplyr::across("model", str_replace, "nitrogen", "total dissolved nitrogen")) %>% 
   mutate(dplyr::across("model", str_replace, "shredders", "% shredders"))
 
 # plot on vertical histogram
