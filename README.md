@@ -1,4 +1,4 @@
-# meta_ecosystem_model
+# Meta-ecosystem model
 
 The scripts in this repository are used to 1) clean and analyze empirical data collected from streams in Gros Morne National Park and Terra Nova National Park in Newfoundland, Canada and 2) simulate terrestrial disturbance in a meta-ecosystem model of these stream-riparian ecosystems. These files are inteded to make my analyses as transparent and reproducible as possible, and have the stream data openly accessible for further analysis. A thorough description of the collection methods can be found in the appendix of the associated thesis found in the MUN archives: [INSERT LINK WHEN AVAILABLE]. 
 
