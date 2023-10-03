@@ -14,8 +14,8 @@ Vieira, N.K.M. et al. (2016) ‘A Database of Lotic Invertebrate Traits for Nort
 [USGS Database](https://doi.org/10.3133/ds187)
 
 4) CanElevation 5m resolution digital elevation model  
-Government of Canada (2022) High Resolution Digital Elevation Model (HRDEM) - CanElevation Series.  
-[open Canada HRDEM](https://open.canada.ca/data/en/dataset/957782bf-847c-4644-a757-e383c0057995) 
+Government of Canada (2022) High Resolution Digital Elevation Model (HRDEM) - CanElevation Series.
+[CanElevation HRDEM](https://open.canada.ca/data/en/dataset/957782bf-847c-4644-a757-e383c0057995) 
 
 6) Data agreement with Gros Morne National Park and Terra Nova national park  
 Gros Morne contact information:  
@@ -59,5 +59,4 @@ This work was funded by an NSERC Discovery grant. We would like to thank all the
 
 ### Manuscript
 **Hannah Adams** - *Author* - [LinkedIn](https://www.linkedin.com/in/hannah-adams-624122219/), [GitHub](https://github.com/hfadams), [ORCiD](https://orcid.org/0000-0003-2647-8021)  
-**Shawn J. Leroux** - *Co-author* -
-
+**Shawn J. Leroux** - *Co-author* - [GitHub](https://github.com/sjleroux), [ORCiD](https://orcid.org/0000-0001-9580-0294), [website](https://shawnleroux.wixsite.com/lerouxlab)
