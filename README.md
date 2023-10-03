@@ -47,6 +47,7 @@ All data processing and analyses for this project were implemented using R (ver.
 ### Folder 3: output
 
 ## Sharing and accessing the data
+This project is licensed under the MIT license, please see the [MIT license web page](https://opensource.org/license/mit/) for details.
 
 ## Funding
 This work was funded by an NSERC Discovery grant. We would like to thank all the institutions and authors who made their data open source and free to support our work.
