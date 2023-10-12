@@ -40,9 +40,11 @@ I performed a global sensitivity analysis on each trophic level and productivity
 All data processing and analyses for this project were implemented using R (ver. 4.2.2), Mathematica (ver. 13.2.1), and QGIS (ver. 3.26.3).
 
 ## repository directory
-### Folder 1: original data
+### Folder 1: data
+Empirical data used for statistical analysis (in situ data collected from stream sites and shapefiles digitized in qGIS)
 
 ### Folder 2: scripts
+
 
 ### Folder 3: output
 
