@@ -38,10 +38,6 @@ We performed a global sensitivity analysis on each trophic level and productivit
 ## software and packages
 All data processing and analyses for this project were implemented using R (ver. 4.2.2), Mathematica (ver. 13.2.1), and QGIS (ver. 3.26.3).
 
-Packages used:
-
-
-
 ## repository directory
 ### Folder 1: data
 Empirical data used for statistical analysis (*in situ* data collected from stream sites and shapefiles digitized in QGIS)  
@@ -96,3 +92,6 @@ This work was funded by an NSERC Discovery grant. We would like to thank all the
 ### Manuscript
 **Hannah Adams** - *Author* - [LinkedIn](https://www.linkedin.com/in/hannah-adams-624122219/), [GitHub](https://github.com/hfadams), [ORCiD](https://orcid.org/0000-0003-2647-8021)  
 **Shawn J. Leroux** - *Co-author* - [GitHub](https://github.com/sjleroux), [ORCiD](https://orcid.org/0000-0001-9580-0294), [website](https://shawnleroux.wixsite.com/lerouxlab)
+
+## References
+
