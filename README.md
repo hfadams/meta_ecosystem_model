@@ -1,6 +1,6 @@
 # Meta-ecosystem model
 
-The scripts in this repository are used to 1) clean and analyze empirical data collected from streams in Gros Morne National Park and Terra Nova National Park in Newfoundland, Canada and 2) simulate terrestrial disturbance in a meta-ecosystem model of these stream-riparian ecosystems. These files are inteded to make my analyses as transparent and reproducible as possible, and have the stream data openly accessible for further analysis. A thorough description of the collection methods can be found in the appendix of the associated thesis found in the MUN archives: [INSERT LINK WHEN AVAILABLE]. 
+The scripts in this repository are used to 1) clean and analyze empirical data collected from streams in Gros Morne National Park and Terra Nova National Park in Newfoundland, Canada and 2) simulate terrestrial disturbance in a meta-ecosystem model of these stream-riparian ecosystems. These files are inteded to make our analyses as transparent and reproducible as possible, and have the stream data openly accessible for further analysis. A thorough description of the collection methods can be found in the appendix of the associated manuscript entitled "Integrating field data and a meta-ecosystem model to study the effects of multiple terrestrial disturbances on small stream ecosystem function". 
 
 The land class data are not publically available, but Forest Resource Inventory shapefiles can be requested from the Newfoundland government, or can be digitized from satellite imagery.
 
@@ -19,24 +19,28 @@ Vieira, N.K.M. et al. (2016) ‘A Database of Lotic Invertebrate Traits for Nort
 Government of Canada (2022) High Resolution Digital Elevation Model (HRDEM) - CanElevation Series.
 [CanElevation HRDEM](https://open.canada.ca/data/en/dataset/957782bf-847c-4644-a757-e383c0057995) 
 
-6) Data sharing agreement with Gros Morne National Park and Terra Nova national park  .
+6) Data sharing agreement with Gros Morne National Park and Terra Nova National Park.
     
-7) Data sharing agreement with the Newfoundland and Labrador government.
+7) Data sharing agreement with the Government of Newfoundland and Labrador.
 
 ## Methods  
 ### In situ data  
-I collected the in situ data in triplicate at each stream site and took the mean of the three samples. Refer to the main thesis text and appendix A for detailed methods.
+We collected the in situ data in triplicate at each stream site and took the mean of the three samples. Refer to the manuscript and appendix A for detailed methods.
 
 ### Model simulations
-After developing a riparian-stream meta-ecosystem model, I used Mathematica to solve for all possible analytical equilibria of the model. I then selected the equilibrium that was locally stable and feasible, and parameterized the model by generating 10,000 random parameter combinations, each within a range from 0-10 (or 0-1 if a proportion). From these I selected the first 1,000 equilibria taht were feasible, locally stable, and where the benthic invertebrate biomass was greater than periphyton biomass. I used these simulations as the "undisturbed" meta-ecosystem to which I created "terrestrial disturbances" by increasing key parameters to simulate tree removal and increased erosion. Refer to the main thesis text and Appendix B for further details.
+After developing a riparian-stream meta-ecosystem model, we used Mathematica to solve for all possible analytical equilibria of the model. We then selected the equilibrium that was locally stable and feasible, and parameterized the model by generating 10,000 random parameter combinations, each within a range from 0-10 (or 0-1 if a proportion). From these we selected the first 1,000 equilibria taht were feasible, locally stable, and where the benthic invertebrate biomass was greater than periphyton biomass. We used these simulations as the "undisturbed" meta-ecosystem to which we created "terrestrial disturbances" by increasing key parameters to simulate tree removal and increased erosion. Refer to the manuscript and Appendix B for further details.
 
 ### Quality assurance  
-I removed all data below the method detection limit of each *in situ* measurement and lab analysis before statistical analysis. I ensured that there was no correlation between predictor variables in the empirical dataset before developing the general linear models. 
+We removed all data below the method detection limit of each *in situ* measurement and lab analysis before statistical analysis. We ensured that there was no correlation between predictor variables in the empirical dataset before developing the general linear models. 
 
-I performed a global sensitivity analysis on each trophic level and productivity metric in the meta-ecosystem model to identify parameters creating the most uncertainty in the model.  
+We performed a global sensitivity analysis on each trophic level and productivity metric in the meta-ecosystem model to identify parameters creating the most uncertainty in the model.  
 
 ## software and packages
 All data processing and analyses for this project were implemented using R (ver. 4.2.2), Mathematica (ver. 13.2.1), and QGIS (ver. 3.26.3).
+
+Packages used:
+
+
 
 ## repository directory
 ### Folder 1: data
@@ -51,7 +55,7 @@ Empirical data used for statistical analysis (*in situ* data collected from stre
 * invert_traits_usgs.csv
 * pebble_count.csv
 * periphyton_foil.csv
-* spatial.data.zip
+* spatial_data.zip
 * surber_sampling.csv
 * tn.csv
 * tss_filters.csv
@@ -83,7 +87,7 @@ This project is licensed under the MIT license, please see the [MIT license web 
 ## Funding
 This work was funded by an NSERC Discovery grant. We would like to thank all the institutions and authors who made their data open source and free to support our work.
 
-## Recommended citation 
+## Recommended citation
 
 ## Authors
 ### Scripts
