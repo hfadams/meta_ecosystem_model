@@ -22,7 +22,7 @@ Vieira, N.K.M. et al. (2016) ‘A Database of Lotic Invertebrate Traits for Nort
 Government of Canada (2022) High Resolution Digital Elevation Model (HRDEM) - CanElevation Series.
 [CanElevation HRDEM](https://open.canada.ca/data/en/dataset/957782bf-847c-4644-a757-e383c0057995)
 
-5) Human impact index shapefile
+5) Human impact index shapefile  
    Government of Newfoundland and Labrador. (2013). Newfoundland and Labrador Human Footprint: A Snapshot of Human Influence on the Landscape. Department of Environment and Conservation, 25.  
 
 6) Data sharing agreement with Gros Morne National Park and Terra Nova National Park.
