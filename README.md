@@ -44,21 +44,27 @@ All data processing and analyses for this project were implemented using R (ver.
 ## repository directory
 ### Folder 1: data
 Empirical data used for statistical analysis (*in situ* data collected from stream sites and shapefiles digitized in QGIS)  
-* [benthic_invertebrates.csv](): Counts of benthic invertebrates collected from each stream site, identified to the family level.
-* [canopy_cover.csv](): Percent canopy cover each stream site, measured at 5 m intervals along the stream reach.
-* [channel_measurements.csv](): Depth, width, and flow at each stream site, measured at three cross sections along the stream reach.
-* [chlorophyll_a.csv](): Spectrophotometer data from periphyton samples collected at each stream site. Absorbance values at key wavelengths are used to estimate periphyton biomass.
-* [doc.csv](): Dissolved organic carbon data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
-* invert_coeficients.csv
-* invert_functional_groups.csv
-* invert_traits_usgs.csv
+* [benthic_invertebrates.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/benthic_invertebrates.csv): Counts of benthic invertebrates collected from each stream site, identified to the family level.
+* [canopy_cover.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/canopy_cover.csv): Percent canopy cover each stream site, measured at 5 m intervals along the stream reach.
+* [channel_measurements.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/channel_measurements.csv): Depth, width, and flow at each stream site, measured at three cross sections along the stream reach.
+* [chlorophyll_a.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/chlorophyll_a.csv): Spectrophotometer data from periphyton samples collected at each stream site. Absorbance values at key wavelengths are used to estimate periphyton biomass.
+* [doc.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/doc.csv): Dissolved organic carbon data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
 * [pebble_count.csv]()
 * [periphyton_foil.csv]()
 * [spatial_data.zip]()
 * [surber_sampling.csv]()
-* [tn.csv](): Dissolved nitrogen data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
+* [tn.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/tn.csv): Dissolved nitrogen data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
 * [tss_filters.csv]()
 * [water_chemistry.csv]()
+
+Not in repository:  
+* invert_coeficients.csv: Coefficients for converting benthic invertebrate length to mass using the power law allometric equation (Burgherr and Meyer, 1997). We used coefficients from (Benke et al., 1999) for these equations, using the “all insect” category for orders where no other coefficients were available (i.e., *collembola*, *oligochaeta*, *gastropoda*, *hirudinea*, *acarina*, *neuropteran*, *lepidoptera*, and *bivalvia*). Coefficients can be found through the link in the "Data sources" section above.
+* invert_functional_groups.csv: Functional groups assigned to each taxa using data from the USGS benthic invertebrate database (see "Data sources: section above)
+* invert_traits_usgs.csv: File containing mean length values for each benthic invertebrate taxa from the USGS benthic invertebrate database (see "Data sources: section above). These data were used in the power law allometric equation (Burgherr and Meyer, 1997).
+
+References:  
+Benke, A. C., Huryn, A. D., Smock, L. A., & Wallace, J. B. (1999). Length-Mass Relationships for Freshwater Macroinvertebrates in North America with Particular Reference to the Southeastern United States. In Source: Journal of the North American Benthological Society (Vol. 18, Issue 3).  
+Burgherr, P., & Meyer, E. I. (1997). Regression analysis of linear body dimensions vs. dry mass in stream macroinvertebrates. Archiv Für Hydrobiologie, 139(1), 101–112. https://doi.org/10.1127/archiv-hydrobiol/139/1997/101  
 
 ### Folder 2: scripts
 Scripts used for processing and analyzing our *in situ* and geospatial data.  
