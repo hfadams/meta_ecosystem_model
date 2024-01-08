@@ -1,6 +1,6 @@
 # Meta-ecosystem model
 
-The scripts in this repository are used to 1) clean and analyze empirical data collected from streams in Gros Morne National Park and Terra Nova National Park in Newfoundland, Canada and 2) simulate terrestrial disturbance in a meta-ecosystem model of these stream-riparian ecosystems. These files are inteded to make our analyses as transparent and reproducible as possible, and have the stream data openly accessible for further analysis. A thorough description of the collection methods can be found in the appendix of the associated manuscript entitled "Integrating field data and a meta-ecosystem model to study the effects of multiple terrestrial disturbances on small stream ecosystem function". 
+The scripts within this repository are used to 1) clean and analyze empirical data collected from streams in Gros Morne National Park and Terra Nova National Park in Newfoundland, Canada and 2) simulate terrestrial disturbance in a meta-ecosystem model of these stream-riparian ecosystems. These files are inteded to make our analyses as transparent and reproducible as possible, and have the stream data openly accessible for further analysis. A thorough description of the collection methods can be found in the appendix of the associated manuscript entitled "Integrating field data and a meta-ecosystem model to study the effects of multiple terrestrial disturbances on small stream ecosystem function". 
 
 The land class data are not publically available, but Forest Resource Inventory shapefiles can be requested from the Newfoundland government, or can be digitized from satellite imagery.
 
@@ -15,13 +15,16 @@ Vieira, N.K.M. et al. (2016) ‘A Database of Lotic Invertebrate Traits for Nort
 
     Read their data sharing policy [here](https://www.usgs.gov/media/files/casc-data-sharing-policy).
 
+3) Benthic invertebrate mass to length conversion coefficients
+   Benke, A. C., Huryn, A. D., Smock, L. A., & Wallace, J. B. (1999). Length-Mass Relationships for Freshwater Macroinvertebrates in North America with Particular Reference to the Southeastern United States. In Source: Journal of the North American Benthological Society (Vol. 18, Issue 3).
+   
 4) CanElevation 5m resolution digital elevation model  
 Government of Canada (2022) High Resolution Digital Elevation Model (HRDEM) - CanElevation Series.
 [CanElevation HRDEM](https://open.canada.ca/data/en/dataset/957782bf-847c-4644-a757-e383c0057995) 
 
-6) Data sharing agreement with Gros Morne National Park and Terra Nova National Park.
+5) Data sharing agreement with Gros Morne National Park and Terra Nova National Park.
     
-7) Data sharing agreement with the Government of Newfoundland and Labrador.
+6) Data sharing agreement with the Government of Newfoundland and Labrador.
 
 ## Methods  
 ### In situ data  
@@ -41,21 +44,21 @@ All data processing and analyses for this project were implemented using R (ver.
 ## repository directory
 ### Folder 1: data
 Empirical data used for statistical analysis (*in situ* data collected from stream sites and shapefiles digitized in QGIS)  
-* benthic_invertebrates.csv
-* canopy_cover.csv
-* channel_measurements.csv
-* chlorophyll_a.csv
-* doc.csv
+* [benthic_invertebrates.csv](): Counts of benthic invertebrates collected from each stream site, identified to the family level.
+* [canopy_cover.csv](): Percent canopy cover each stream site, measured at 5 m intervals along the stream reach.
+* [channel_measurements.csv](): Depth, width, and flow at each stream site, measured at three cross sections along the stream reach.
+* [chlorophyll_a.csv](): Spectrophotometer data from periphyton samples collected at each stream site. Absorbance values at key wavelengths are used to estimate periphyton biomass.
+* [doc.csv](): Dissolved organic carbon data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
 * invert_coeficients.csv
 * invert_functional_groups.csv
 * invert_traits_usgs.csv
-* pebble_count.csv
-* periphyton_foil.csv
-* spatial_data.zip
-* surber_sampling.csv
-* tn.csv
-* tss_filters.csv
-* water_chemistry.csv
+* [pebble_count.csv]()
+* [periphyton_foil.csv]()
+* [spatial_data.zip]()
+* [surber_sampling.csv]()
+* [tn.csv](): Dissolved nitrogen data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
+* [tss_filters.csv]()
+* [water_chemistry.csv]()
 
 ### Folder 2: scripts
 Scripts used for processing and analyzing our *in situ* and geospatial data.  
