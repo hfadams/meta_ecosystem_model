@@ -64,8 +64,11 @@ Not in repository:
 
 References:  
 Benke, A. C., Huryn, A. D., Smock, L. A., & Wallace, J. B. (1999). Length-Mass Relationships for Freshwater Macroinvertebrates in North America with Particular Reference to the Southeastern United States. In Source: Journal of the North American Benthological Society (Vol. 18, Issue 3).  
+
 Burgherr, P., & Meyer, E. I. (1997). Regression analysis of linear body dimensions vs. dry mass in stream macroinvertebrates. Archiv Für Hydrobiologie, 139(1), 101–112. https://doi.org/10.1127/archiv-hydrobiol/139/1997/101  
+
 Hauer, F. R., & Lamberti, G. A. (2007). Methods in stream ecology. Elsevier Inc.  
+
 Ministry of Environment. (2009). The Canadian Aquatic Biomonitoring Network Field Manual. http://www.unb.ca/cri/cabin_criweb.html  
 
 ### Folder 2: scripts
