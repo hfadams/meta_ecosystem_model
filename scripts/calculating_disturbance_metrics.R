@@ -1,9 +1,5 @@
-# script for calculating metrics for disturbance and land cover within
-# three spatial extents around each study site
-# note that data is not provided as per our data sharing agreement,
-# but geospatial data withing the parks can be requested from Gros Morne and 
-# Terra Nova National, and forest resource inventory data can be requested 
-# through _______ 
+# script for calculating metrics for disturbance and land cover within three spatial extents around each study site. 
+# Land cover data are not provided as per our data sharing agreement with the Government of Newfoundland and Parks Canada.
 
 # sections:
 # 1) read in shapefiles
@@ -18,9 +14,6 @@ library(elevatr)
 library(dplyr)
 library(lwgeom)
 library(reshape2)
-library(ggplot2)
-library(gridExtra)
-library(cowplot)
 library(devtools)
 
 setwd("C:/Users/hanna/OneDrive/Documents/Masters/winter_2023/GIS")
