@@ -1314,7 +1314,7 @@ model_summary <- rbind(model_summary_large,
                        model_summary_small)
 
 # export model summary
-write.csv(model_summary, "output/all_model_results_dec5.csv", row.names=FALSE)
+#write.csv(model_summary, "output/empirical_glm_results_unformatted.csv", row.names=FALSE)
 
 # 5) Format and export model summary ----
 
@@ -1363,7 +1363,7 @@ formatted_model_output <- model_summary %>%
          "predictor" = "predictor_var", 
          )
 
-write.csv(formatted_model_output, "output/formatted_stats_model_output_dec14.csv", row.names=FALSE)
+write.csv(formatted_model_output, "output/empirical_glm_results.csv", row.names=FALSE)
 
 # 6) Plot results from the top models ----
 
