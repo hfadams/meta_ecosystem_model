@@ -16,16 +16,11 @@ library(asbio)
 library(vegan)
 
 ## read in files ----
-setwd("C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc")
-
 water_chem <- read.csv("data/water_chemistry.csv")  %>% 
   rename("conductivity" = ec)
-# banks <- read.csv("data/bank_stability.csv")
-# substrate <- read.csv("data/substrate_matrix.csv")
 canopy <- read.csv("data/canopy_cover.csv")
 pebble_count <- read.csv("data/pebble_count.csv")
 channel <- read.csv("data/channel_measurements.csv")
-# soil_ph <- read.csv("data/soil_ph.csv")
 chlorophyll <- read.csv("data/chlorophyll_a.csv")
 periphyton_foil <- read.csv("data/periphyton_foil.csv")
 periphyton_afdm <- read.csv("data/periphyton_afdm.csv")
@@ -166,14 +161,6 @@ pebble_calculations <- function(data){
     summarise(across(intermediate_axis:embeddedness, ~sd(.x, na.rm = TRUE))) %>%
     rename(wolmanD50_sd=intermediate_axis, embeddedness_sd=embeddedness)
   
-  # wolmanDg <- data %>% 
-    # group_by(site) %>% 
-    # summarise_at(vars(-pebble_number, 
-                      # -park, 
-                      # -embeddedness), 
-                 # funs(exp(mean(log(.))))) %>% 
-    # rename(wolmanDg=intermediate_axis)
-  
   classified_pebbles <- rock_class(data, data$intermediate_axis)
   classified_pebbles_max <- classified_pebbles %>% 
     group_by(site) %>% 
@@ -209,18 +196,6 @@ pebble_calcs <- all_pebble_data %>%
          embeddedness_sd) %>% 
   distinct()
 
-# ii) substrate matrix
-# calculate the average for each site
-# substrate_calcs <- substrate %>% 
-  # group_by(site) %>% 
-  # mutate(matrix=mean(substrate_matrix, na.rm=TRUE), 
-         # matrix_sd=sd(substrate_matrix, na.rm=TRUE)) %>% 
-  # select(park,
-         # site,
-         # matrix,
-         # matrix_sd) %>% 
-  # distinct()
-
 # 1) flow
 # calculate mean flow from the three replicates, then means for each site
 channel_selected <- channel %>% 
@@ -238,21 +213,6 @@ channel_means <- channel_selected %>%
 channel_sd <- channel_selected %>%
   group_by(site) %>%
   summarise(across(depth:flow, ~sd(.x, na.rm = TRUE)))
-
-# soil ph
-# soil_ph_mean <- soil_ph %>%
-  # mutate(soil_ph = (left_bank_ph + right_bank_ph)/2) %>% 
-  # select(site, soil_ph)
-
-# bank stability
-# bank_stability_mean <- banks %>%
-  # mutate(bank_stability = 
-           # (left_bank_stability + right_bank_stability)/2) %>% 
-  # select(site, 
-         # bank_stability, 
-         # water_level, 
-         # clarity, 
-         # colour)
 
 # 3) canopy cover ----
 # make columns for reach length and average cover
@@ -492,17 +452,6 @@ invert_fun_groups <- inverts %>%
   mutate(percent_fun_group = fun_group_count/total_individuals*100)
 invert_fun_groups_wide <- dcast(invert_fun_groups, site~functional_group, 
                                 value.var = "percent_fun_group")
-
-
-# calculate Shannon-Weiner biodiversity index
-# site_list <- (unique(inverts$site))
-# shannon_df <- data.frame()
-
-# for (element in site_list){
-  # shannon_index <- diversity((inverts %>% filter(site == element & !is.na(invert_count)))$invert_count, index = "shannon")
-  # shannon_df2 <- data.frame(site=element, shannon=shannon_index)
-  # shannon_df <- rbind(shannon_df, shannon_df2)
-# }
 
 # 6) Compile data by site and export ----
 
