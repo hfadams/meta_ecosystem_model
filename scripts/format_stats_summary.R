@@ -4,8 +4,7 @@ library(stringr)
 library(reshape2)
 
 # read in csv with model results
-setwd("C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc")
-model_summary <- read.csv("output/formatted_stats_model_output_v3.csv")
+model_summary <- read.csv("output/empirical_glm_results_long.csv")
 # new formatting version:
 # 0) select spatial extent?
 
@@ -35,4 +34,4 @@ stats_model_fit <- formatted_model_output %>%
 merged_stats_data <- stats_model_fit %>%
   full_join(stats_data_wide, by=c("extent", "model", "model_num"))
 
-write.csv(merged_stats_data, "output/formatted_stats_model_output_wide_dec14.csv", row.names=FALSE)
+write.csv(merged_stats_data, "output/empirical_glm_results.csv", row.names=FALSE)
