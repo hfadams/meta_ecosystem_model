@@ -54,7 +54,16 @@ Empirical data used for statistical analysis (*in situ* data collected from stre
 * [doc.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/doc.csv): Dissolved organic carbon data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
 * [pebble_count.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/pebble_count.csv): Counts of substrate size and embeddedness at each stream site, following Canadian Aquatic Biomonitoring Network (CABIN) guidelines (CABIN Field Manual, 2009).
 * [periphyton_foil.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/periphyton_foil.csv): Mass of foil used to cover the surface area of the rocks that the periphyton samples were collected from. These values were converted to surface area following (Hauer & Lamberti, 2007).
-* [spatial_data.zip]()
+* [spatial_data.zip](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/spatial_data.zip): zip file containing shapefiles used to calculate disturbance metrics at each site
+    * catchments.shp: polygons of the catchments upstream of the sampling location at each stream site (largest spatial extent)  
+    * forest_disturbance.shp: polygons of forest disturbance from logging, insect outbreaks, fores fire, and a general "cleared" category within the site catchments  
+    * local_extent.shp: polygons of the smallest spatial extent at each stream site (10% of the catchment area, closest to the sampling location)  
+    * paved_roads.shp: lines of all paved roads within the site catchments
+    * riparian_extent.shp: polygons of the mid-sized spatial extent (100 m riparian buffer on each side of the stream and tributaries)  
+    * stream_reach.shp: line showing the sampling reach at each stream site  
+    * stream_sites.shp: points of sampling location for each stream site
+    * trails.shp: lines of all trails within the site catchments  
+    * unpaved_roads.shp: lines of all unpaved roads (including ATV trails) within the site catchments  
 * [surber_sampling.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/surber_sampling.csv): Number of surber samples collected from each stream site.
 * [tn.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/tn.csv): Dissolved nitrogen data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
 * [tss_filters.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/tss_filters.csv): Mass of total suspended solids measured from water samples collected at each stream site. Note that these measurements were below the instrument detection limit and were not included in our analyses.
