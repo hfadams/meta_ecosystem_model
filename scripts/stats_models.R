@@ -23,9 +23,9 @@ library(nlme)
 library(AICcmodavg)
 
 # read in data ----
-disturbance_data_large <- read.csv("output/disturbance_data_large.csv")
-disturbance_data_med <- read.csv("output/disturbance_data_med.csv")
-disturbance_data_small <- read.csv("output/disturbance_data_small_proportional.csv")
+disturbance_data_catchment <- read.csv("output/disturbance_data_catchment.csv")
+disturbance_data_riparian <- read.csv("output/disturbance_data_riparian.csv")
+disturbance_data_local <- read.csv("output/disturbance_data_local.csv")
 field_data <- read.csv("output/all_site_data_means.csv")
 
 # function to combine into one dataset and select relevant data
@@ -60,9 +60,9 @@ combine_data <- function(join_data){
   return(site_data)
 }
 
-site_data_large <- combine_data(disturbance_data_large)
-site_data_med <- combine_data(disturbance_data_med)
-site_data_small <- combine_data(disturbance_data_small)
+site_data_catchment <- combine_data(disturbance_data_catchment)
+site_data_riparian <- combine_data(disturbance_data_riparian)
+site_data_local <- combine_data(disturbance_data_local)
 
 # 2) Rescale data with min max scaling ----
 
@@ -95,9 +95,9 @@ rescale_data <- function(data){
   return(rescaled_data)
 }
 
-rescaled_data_large <- rescale_data(site_data_large)
-rescaled_data_med <- rescale_data(site_data_med)
-rescaled_data_small <- rescale_data(site_data_small)
+rescaled_data_large <- rescale_data(site_data_catchment)
+rescaled_data_med <- rescale_data(site_data_riparian)
+rescaled_data_small <- rescale_data(site_data_local)
 
 # 3) Functions for each model comparison ----
 
