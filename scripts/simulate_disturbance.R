@@ -31,13 +31,9 @@ for(i in seq(1,4000,1)){
   param_estimates2 <- rbind(param_estimates2, data.frame(Result=loop_2))
 }
 
-# export files
-write.csv(param_estimates1, "C:/Users/Hannah Adams/Desktop/param_estimates1.csv", row.names=FALSE)
-write.csv(param_estimates2, "C:/Users/Hannah Adams/Desktop/param_estimates2.csv", row.names=FALSE)
-
-# read in param_estimates 1 and 2 (pool of randomly generated numbers between 0-10 and 0-1 respectively)
-# param_estimates1 <- read.csv("C:/Users/Hannah Adams/Desktop/param_estimates1.csv")
-# param_estimates2 <- read.csv("C:/Users/Hannah Adams/Desktop/param_estimates2.csv")
+# export files (for records)
+write.csv(param_estimates1, "output/param_estimates1.csv", row.names=FALSE)
+write.csv(param_estimates2, "output/param_estimates2.csv", row.names=FALSE)
 
 tic("generate parameter combinations")
 # Next, make a dataframe for 1000 parameter combinations
@@ -349,7 +345,7 @@ param_simulations_stable <- param_simulations_stability_test %>%
 toc()
 
 # export file with all feasible and stable parameter combinations
-write.csv(param_simulations_stable, "C:/Users/Hannah Adams/Desktop/param_simulations_stable_10000.csv", row.names=FALSE)
+write.csv(param_simulations_stable, "output/param_simulations_stable_10000.csv", row.names=FALSE)
 
 # first make a function that takes in one row and generates a dataset for the sensitivity test
 expand_row <- function(master_df,
@@ -655,7 +651,7 @@ sensitivity_params_θt_μt <- simulate_disturbance(master_df=(param_simulations_
 
 feasible_data_θt_μt <- feasibility_check(sensitivity_params_θt_μt)
 stable_data_θt_μt <- stability_check(feasible_data_θt_μt)
-write.csv(stable_data_θt_μt, "C:/Users/Hannah Adams/Desktop/stable_data_θt_μt_10000.csv", row.names=FALSE)
+write.csv(stable_data_θt_μt, "output/stable_data_θt_μt_10000.csv", row.names=FALSE)
 toc()
 
 tic("generate data for forest simulation plot")
@@ -667,7 +663,7 @@ surface_data_forestry <- stable_data_θt_μt %>%
                funs(mean(., na.rm=TRUE))) %>% 
   ungroup()
 
-write.csv(surface_data_forestry, "C:/Users/Hannah Adams/Desktop/surface_data_forestry_10000.csv", row.names=FALSE)
+write.csv(surface_data_forestry, "output/surface_data_forestry_10000.csv", row.names=FALSE)
 
 p1 <- ggplot(surface_data_forestry, aes(θt, μt, z=Ha)) +
   geom_contour_filled() +
@@ -699,7 +695,7 @@ p4 <- ggplot(surface_data_forestry, aes(θt, μt, z=pa_prod)) +
 
 forestry_surface_plots <- grid.arrange(p1, p2, p3, p4, nrow=2)
 toc()
-ggsave(file = "C:/Users/Hannah Adams/Desktop/surafce_plots_forestry_10000.svg", plot=forestry_surface_plots, width=12, height=10)
+ggsave(file = "output/surafce_plots_forestry_10000.svg", plot=forestry_surface_plots, width=12, height=10)
 
 p5 <- ggplot(surface_data_forestry, aes(θt, μt, z=Na)) +
   geom_contour_filled() +
@@ -717,7 +713,7 @@ p6 <- ggplot(surface_data_forestry, aes(θt, μt, z=Nt)) +
   ylab("") +
   scale_y_reverse()
 forestry_nutrient_surface_plots <- grid.arrange(p5, p6, nrow=1)
-ggsave(file = "C:/Users/Hannah Adams/Desktop/surafce_plots_nutrients_forestry_10000.svg", plot=forestry_nutrient_surface_plots, width=12, height=6)
+ggsave(file = "output/surafce_plots_nutrients_forestry_10000.svg", plot=forestry_nutrient_surface_plots, width=12, height=6)
 
 tic("atv trail simulation")
 # 2) ATV trails
@@ -735,7 +731,7 @@ sensitivity_params_βa_αa <- simulate_disturbance(master_df=(param_simulations_
 
 feasible_data_βa_αa <- feasibility_check(sensitivity_params_βa_αa)
 stable_data_βa_αa <- stability_check(feasible_data_βa_αa)
-write.csv(stable_data_βa_αa, "C:/Users/Hannah Adams/Desktop/stable_data_βa_αa_10000.csv", row.names=FALSE)
+write.csv(stable_data_βa_αa, "output/stable_data_βa_αa_10000.csv", row.names=FALSE)
 toc()
 
 tic("plot atv simulation")
@@ -747,7 +743,7 @@ surface_data_atv <- stable_data_βa_αa %>%
                funs(mean(., na.rm=TRUE))) %>% 
   ungroup()
 
-write.csv(surface_data_atv, "C:/Users/Hannah Adams/Desktop/surface_data_atv_10000.csv", row.names=FALSE)
+write.csv(surface_data_atv, "output/surface_data_atv_10000.csv", row.names=FALSE)
 
 p1 <- ggplot(surface_data_atv, aes(βa, αa, z=Ha)) +
   geom_contour_filled() +
@@ -786,7 +782,7 @@ p4 <- ggplot(surface_data_atv, aes(βa, αa, z=pa_prod)) +
   scale_y_reverse()
 
 atv_surface_plots <- grid.arrange(p1, p2, p3, p4, nrow=2)
-ggsave(file = "C:/Users/Hannah Adams/Desktop/surafce_plots_atv_10000.svg", plot=atv_surface_plots, width=12, height=10)
+ggsave(file = "output/surafce_plots_atv_10000.svg", plot=atv_surface_plots, width=12, height=10)
 toc() 
 
 p5 <- ggplot(surface_data_atv, aes(βa, αa, z=Na)) +
@@ -808,5 +804,5 @@ p6 <- ggplot(surface_data_atv, aes(βa, αa, z=Nt)) +
   scale_y_reverse()
 
 atv_nutrient_surface_plots <- grid.arrange(p5, p6, nrow=1)
-ggsave(file = "C:/Users/Hannah Adams/Desktop/surafce_plots_atv_nutrients_10000.svg", plot=atv_nutrient_surface_plots, width=12, height=6)
+ggsave(file = "output/surafce_plots_atv_nutrients_10000.svg", plot=atv_nutrient_surface_plots, width=12, height=6)
 
