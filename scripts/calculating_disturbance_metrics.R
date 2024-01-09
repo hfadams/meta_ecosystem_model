@@ -247,9 +247,9 @@ riparian_extent_data <- disturbance_calculations(riparian_extent, "medium")
 site_extent_data <- disturbance_calculations(site_extent, "small")
 
 # export data for each spatial scale as a csv
-write.csv((catchment_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_large.csv", row.names=FALSE)
-write.csv((riparian_extent_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_med.csv", row.names=FALSE)
-write.csv((site_extent_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_small_proportional.csv", row.names=FALSE)
+write.csv((catchment_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_catchment.csv", row.names=FALSE)
+write.csv((riparian_extent_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_riparian.csv", row.names=FALSE)
+write.csv((site_extent_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_local.csv", row.names=FALSE)
 
 # 3) code for generating the "site" spatial extent (closest 10% of catchment area) ----
 catchments_df <- catchments %>% 
@@ -269,4 +269,4 @@ clipped_site_extent <- st_intersection(buffer_sf, catchments)
 proportional_site_extent <- st_intersection(clipped_site_extent, riparian_extent)
 proportional_site_extent$catchment_area <- st_area(proportional_site_extent$geometry)
 
-st_write(proportional_site_extent,"clipped_proportional_buffer.shp", append=FALSE)
+st_write(proportional_site_extent,"local_extent.shp", append=FALSE)
