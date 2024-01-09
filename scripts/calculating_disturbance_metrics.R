@@ -20,25 +20,25 @@ library(devtools)
 # transforming all shapefiles to match the stream lengths shapefile crs
 
 # generated in QGIS
-stream_reach <- st_read("stream_reach.shp")
-catchments <- st_transform(st_read("catchments.shp"), crs(stream_reach)) %>%
+stream_reach <- st_read("data/spatial_data/stream_reach.shp")
+catchments <- st_transform(st_read("data/spatial_data/catchments.shp"), crs(stream_reach)) %>%
   arrange(site)
-stream_sites <- st_transform(st_read("stream_sites.shp"), crs(stream_reach))
+stream_sites <- st_transform(st_read("data/spatial_data/stream_sites.shp"), crs(stream_reach))
 # drop geometry to select dataframe with site names
 site_list <- st_drop_geometry((stream_sites %>% dplyr::select(park, site)), geometry=NULL) %>% 
   distinct()
 # read in 100 m buffer around the streams (medium spatial scale)
-riparian_extent <- st_transform(st_read("riparian_extent.shp"), crs(stream_reach)) %>% 
+riparian_extent <- st_transform(st_read("data/spatial_data/riparian_extent.shp"), crs(stream_reach)) %>% 
   st_zm(drop = TRUE, what = "ZM")
 # read in buffer for closest radius from sampling site that captures 10% of the catchment (smallest spatial scale)
-site_extent <- st_transform(st_read("local_extent.shp"), crs(stream_reach)) %>% 
+site_extent <- st_transform(st_read("data/spatial_data/local_extent.shp"), crs(stream_reach)) %>% 
   st_zm(drop = TRUE, what = "ZM") %>% rename(catchment_area = ctchmn_) # see code for generating this at the bottom of the script
 
 # digitized by hand
-paved_roads <- st_transform(st_read("paved_roads.shp"), crs(stream_reach))
-unpaved_roads <- st_transform(st_read("unpaved_roads.shp"), crs(stream_reach))
-trails <- st_transform(st_read("trails.shp"), crs(stream_reach))
-forest_disturbance <- st_transform(st_read("forest_disturbance.shp"), crs(stream_reach)) %>% 
+paved_roads <- st_transform(st_read("data/spatial_data/paved_roads.shp"), crs(stream_reach))
+unpaved_roads <- st_transform(st_read("data/spatial_data/unpaved_roads.shp"), crs(stream_reach))
+trails <- st_transform(st_read("data/spatial_data/trails.shp"), crs(stream_reach))
+forest_disturbance <- st_transform(st_read("data/spatial_data/forest_disturbance.shp"), crs(stream_reach)) %>% 
   st_zm(drop = TRUE, what = "ZM")
 forest_disturbance <- st_make_valid(forest_disturbance)
 # separate out each type of disturbance from moose mediated meadow layer
@@ -48,18 +48,18 @@ cleared <- subset(forest_disturbance, disturbanc == "cleared")
 fire <- subset(forest_disturbance, disturbanc == "fire")
 
 # FRI data (generated from compiling and editing parks and provincial shapefiles)
-lakes <- st_transform(st_read("lakes.shp"), crs(stream_reach)) %>% 
+lakes <- st_transform(st_read("data/spatial_data/lakes.shp"), crs(stream_reach)) %>% 
   dplyr::select(geometry) %>% 
   st_zm(drop = TRUE, what = "ZM")
-barrens <- st_transform(st_read("barrens.shp"), crs(stream_reach)) %>% 
+barrens <- st_transform(st_read("data/spatial_data/barrens.shp"), crs(stream_reach)) %>% 
   dplyr::select(geometry) %>% 
   st_zm(drop = TRUE, what = "ZM")
-wetland <- st_transform(st_read("wetland.shp"), crs(stream_reach)) %>% 
+wetland <- st_transform(st_read("data/spatial_data/wetland.shp"), crs(stream_reach)) %>% 
   dplyr::select(geometry) %>% 
   st_zm(drop = TRUE, what = "ZM")
 
 # read in human footprint (converted to shapefile using "vectorize" tool)
-human_footprint <- st_transform(st_read("human_footrpint.shp"), crs(stream_reach))
+human_footprint <- st_transform(st_read("data/spatial_data/human_footrpint.shp"), crs(stream_reach))
 
 # 2) calculate disturbance and land use in each catchment ----
 # calculate area for each catchment
