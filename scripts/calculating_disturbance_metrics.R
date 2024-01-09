@@ -16,59 +16,56 @@ library(lwgeom)
 library(reshape2)
 library(devtools)
 
-setwd("C:/Users/hanna/OneDrive/Documents/Masters/winter_2023/GIS")
-
-stream_lengths <- st_read("stream_lengths2.shp") # eventually should rename this
-
 # 1) Read in shapefiles ----
 # transforming all shapefiles to match the stream lengths shapefile crs
 
 # generated in QGIS
-catchments <- st_transform(st_read("catchments_merged.shp"), crs(stream_lengths)) %>%
+stream_reach <- st_read("stream_reach.shp")
+catchments <- st_transform(st_read("catchments.shp"), crs(stream_reach)) %>%
   arrange(site)
-stream_sites <- st_transform(st_read("stream_sites.shp"), crs(stream_lengths))
+stream_sites <- st_transform(st_read("stream_sites.shp"), crs(stream_reach))
 # drop geometry to select dataframe with site names
 site_list <- st_drop_geometry((stream_sites %>% dplyr::select(park, site)), geometry=NULL) %>% 
   distinct()
 # read in 100 m buffer around the streams (medium spatial scale)
-stream_buffer <- st_transform(st_read("stream_100m_buffer_all_sites_v2.shp"), crs(stream_lengths)) %>% 
+riparian_extent <- st_transform(st_read("riparian_extent.shp"), crs(stream_reach)) %>% 
   st_zm(drop = TRUE, what = "ZM")
 # read in buffer for closest radius from sampling site that captures 10% of the catchment (smallest spatial scale)
-site_buffer <- st_transform(st_read("clipped_proportional_buffer.shp"), crs(stream_lengths)) %>% 
+site_extent <- st_transform(st_read("local_extent.shp"), crs(stream_reach)) %>% 
   st_zm(drop = TRUE, what = "ZM") %>% rename(catchment_area = ctchmn_) # see code for generating this at the bottom of the script
 
 # digitized by hand
-paved_roads <- st_transform(st_read("paved_roads.shp"), crs(stream_lengths))
-unpaved_roads <- st_transform(st_read("unpaved_roads.shp"), crs(stream_lengths))
-trails <- st_transform(st_read("trails.shp"), crs(stream_lengths))
-moose_mediated_meadow <- st_transform(st_read("moose_mediated_meadow_clipped.shp"), crs(stream_lengths)) %>% 
+paved_roads <- st_transform(st_read("paved_roads.shp"), crs(stream_reach))
+unpaved_roads <- st_transform(st_read("unpaved_roads.shp"), crs(stream_reach))
+trails <- st_transform(st_read("trails.shp"), crs(stream_reach))
+forest_disturbance <- st_transform(st_read("forest_disturbance.shp"), crs(stream_reach)) %>% 
   st_zm(drop = TRUE, what = "ZM")
-moose_mediated_meadow <- st_make_valid(moose_mediated_meadow)
+forest_disturbance <- st_make_valid(forest_disturbance)
 # separate out each type of disturbance from moose mediated meadow layer
-insect <- subset(moose_mediated_meadow, disturbanc == "insect")
-logging <- subset(moose_mediated_meadow, disturbanc == "logging")
-cleared <- subset(moose_mediated_meadow, disturbanc == "cleared")
-fire <- subset(moose_mediated_meadow, disturbanc == "fire")
+insect <- subset(forest_disturbance, disturbanc == "insect")
+logging <- subset(forest_disturbance, disturbanc == "logging")
+cleared <- subset(forest_disturbance, disturbanc == "cleared")
+fire <- subset(forest_disturbance, disturbanc == "fire")
 
 # FRI data (generated from compiling and editing parks and provincial shapefiles)
-lakes <- st_transform(st_read("lakes.shp"), crs(stream_lengths)) %>% 
+lakes <- st_transform(st_read("lakes.shp"), crs(stream_reach)) %>% 
   dplyr::select(geometry) %>% 
   st_zm(drop = TRUE, what = "ZM")
-barrens <- st_transform(st_read("barrens.shp"), crs(stream_lengths)) %>% 
+barrens <- st_transform(st_read("barrens.shp"), crs(stream_reach)) %>% 
   dplyr::select(geometry) %>% 
   st_zm(drop = TRUE, what = "ZM")
-wetland <- st_transform(st_read("wetland_fixed.shp"), crs(stream_lengths)) %>% 
+wetland <- st_transform(st_read("wetland.shp"), crs(stream_reach)) %>% 
   dplyr::select(geometry) %>% 
   st_zm(drop = TRUE, what = "ZM")
 
 # read in human footprint (converted to shapefile using "vectorize" tool)
-human_footprint <- st_transform(st_read("human_footrpint.shp"), crs(stream_lengths))
+human_footprint <- st_transform(st_read("human_footrpint.shp"), crs(stream_reach))
 
 # 2) calculate disturbance and land use in each catchment ----
 # calculate area for each catchment
 catchments$catchment_area <- st_area(catchments$geometry)
-stream_buffer$catchment_area <- st_area(stream_buffer$geometry)
-site_buffer$catchment_area <- st_area(site_buffer$geometry)
+riparian_extent$catchment_area <- st_area(riparian_extent$geometry)
+site_extent$catchment_area <- st_area(site_extent$geometry)
 
 # flatten polygons to be 2D
 sf_use_s2(FALSE)
@@ -246,13 +243,13 @@ disturbance_calculations <- function(spatial_extent_shapefile, spatial_scale){
 
 # use disturbance_calculations function to calculate data for each spatial scale
 catchment_data <- disturbance_calculations(catchments, "large")
-stream_buffer_data <- disturbance_calculations(stream_buffer, "medium")
-site_buffer_data <- disturbance_calculations(site_buffer, "small")
+riparian_extent_data <- disturbance_calculations(riparian_extent, "medium")
+site_extent_data <- disturbance_calculations(site_extent, "small")
 
 # export data for each spatial scale as a csv
 write.csv((catchment_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_large.csv", row.names=FALSE)
-write.csv((stream_buffer_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_med.csv", row.names=FALSE)
-write.csv((site_buffer_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_small_proportional.csv", row.names=FALSE)
+write.csv((riparian_extent_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_med.csv", row.names=FALSE)
+write.csv((site_extent_data %>% dplyr::select(-geometry)), "C:/Users/hanna/OneDrive/Documents/GitHub/misc_msc/output/disturbance_data_small_proportional.csv", row.names=FALSE)
 
 # 3) code for generating the "site" spatial extent (closest 10% of catchment area) ----
 catchments_df <- catchments %>% 
@@ -262,14 +259,14 @@ catchments_df <- catchments %>%
 # read in site pour points and generate buffer around each
 # iterate through the data frame, adding points
 pour_point <- st_read("site_pour_point.shp") %>% arrange(site)
-stream_lengths_df <- stream_lengths %>% 
+stream_reach_df <- stream_reach %>% 
   st_set_geometry(NULL) %>% 
   mutate(buffer_radius = length*0.1) %>% 
   arrange(site)
 
 buffer_sf <- st_buffer(pour_point$geometry, dist = as.numeric(catchments_df$buffer_radius), endCapStyle = "ROUND")
-clipped_site_buffer <- st_intersection(buffer_sf, catchments) 
-proportional_site_buffer <- st_intersection(clipped_site_buffer, stream_buffer)
-proportional_site_buffer$catchment_area <- st_area(proportional_site_buffer$geometry)
+clipped_site_extent <- st_intersection(buffer_sf, catchments) 
+proportional_site_extent <- st_intersection(clipped_site_extent, riparian_extent)
+proportional_site_extent$catchment_area <- st_area(proportional_site_extent$geometry)
 
-st_write(proportional_site_buffer,"clipped_proportional_buffer.shp", append=FALSE)
+st_write(proportional_site_extent,"clipped_proportional_buffer.shp", append=FALSE)
