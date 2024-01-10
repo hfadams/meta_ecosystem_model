@@ -2,7 +2,6 @@
 *In situ* data collected from stream sites and geospatial data generated from satellite imagery in QGIS, used to find relationships between stream characteristics and terrestrial disturbances across spatial extents.  
 
 ## Folder directory  
-* [benthic_invertebrates.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/benthic_invertebrates.csv): Counts of benthic invertebrates collected from each stream site using a Surber sampler, identified to the family level by Entomogen Inc.
 * [canopy_cover.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/canopy_cover.csv): Percent canopy cover each stream site, measured at 5 m intervals along the stream reach.
 * [channel_measurements.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/channel_measurements.csv): Depth, width, and flow at each stream site, measured at three cross sections along the stream reach.
 * [chlorophyll_a.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/chlorophyll_a.csv): Spectrophotometer data from periphyton samples collected at each stream site. Absorbance values at key wavelengths are used to estimate periphyton biomass.
@@ -25,22 +24,15 @@
 * [water_chemistry.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/water_chemistry.csv): Measurements of ph, water temperature, electrical conductivity, total dissolved solids, alkalinity, and turbidity from each stream site.
 * [periphyton_afdm.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/periphyton_afdm.csv): Ash free dry mass (AFDM) of periphyton samples collected at each stream site
 
-#### Not in repository:  
-* invert_coeficients.csv: Coefficients for converting benthic invertebrate length to mass using the power law allometric equation (Burgherr and Meyer, 1997). We used coefficients from (Benke et al., 1999) for these equations, using the “all insect” category for orders where no other coefficients were available (i.e., *collembola*, *oligochaeta*, *gastropoda*, *hirudinea*, *acarina*, *neuropteran*, *lepidoptera*, and *bivalvia*). Coefficients can be found through the link in the "Data sources" section above.
-* invert_functional_groups.csv: Functional groups assigned to each taxa using data from the USGS benthic invertebrate database (see "Data sources: section above)
-* invert_traits_usgs.csv: File containing mean length values for each benthic invertebrate taxa from the USGS benthic invertebrate database (see "Data sources: section above). These data were used in the power law allometric equation (Burgherr and Meyer, 1997).
-
-#### References:  
-
-Benke, A. C., Huryn, A. D., Smock, L. A., & Wallace, J. B. (1999). Length-Mass Relationships for Freshwater Macroinvertebrates in North America with Particular Reference to the Southeastern United States. In Source: Journal of the North American Benthological Society (Vol. 18, Issue 3).  
-
-Burgherr, P., & Meyer, E. I. (1997). Regression analysis of linear body dimensions vs. dry mass in stream macroinvertebrates. Archiv Für Hydrobiologie, 139(1), 101–112. https://doi.org/10.1127/archiv-hydrobiol/139/1997/101  
-
-Hauer, F. R., & Lamberti, G. A. (2007). Methods in stream ecology. Elsevier Inc.  
-
-Ministry of Environment. (2009). The Canadian Aquatic Biomonitoring Network Field Manual. http://www.unb.ca/cri/cabin_criweb.html  
-
 ## Metadata for variables in each file:  
 
-### benthic_invertebrates.csv
-|       Variable       |       description           |
+### benthic_invertebrates.csv: 
+Counts of benthic invertebrates collected from each stream site using a Surber sampler, identified to the family level by Entomogen Inc.  
+|       Variable       |       Units          |      Description                                                                       |
+|----------------------|----------------------|----------------------------------------------------------------------------------------|
+| park                 | GM or TN             | Provincial park the site is within or closest to; GM = Gros Morne and TN = Terra Nova  |
+| site                 | Site name            | Unique code assigned to each stream site                                               |
+| order                | Taxonomic name       | Order of the benthic invertebrates counted                                             |
+| family               | Taxonomic name       | Family of the benthic invertebrates counted                                            | 
+| count                |
+
