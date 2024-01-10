@@ -2,8 +2,6 @@
 *In situ* data collected from stream sites and geospatial data generated from satellite imagery in QGIS, used to find relationships between stream characteristics and terrestrial disturbances across spatial extents.  
 
 ## Folder directory  
-* [canopy_cover.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/canopy_cover.csv): Percent canopy cover each stream site, measured at 5 m intervals along the stream reach.
-* [channel_measurements.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/channel_measurements.csv): Depth, width, and flow at each stream site, measured at three cross sections along the stream reach.
 * [chlorophyll_a.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/chlorophyll_a.csv): Spectrophotometer data from periphyton samples collected at each stream site. Absorbance values at key wavelengths are used to estimate periphyton biomass.
 * [doc.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/doc.csv): Dissolved organic carbon data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
 * [pebble_count.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/pebble_count.csv): Counts of substrate size and embeddedness at each stream site, following Canadian Aquatic Biomonitoring Network (CABIN) guidelines (CABIN Field Manual, 2009).
@@ -31,8 +29,34 @@ Counts of benthic invertebrates collected from each stream site using a Surber s
 |       Variable       |       Units          |      Description                                                                       |
 |----------------------|----------------------|----------------------------------------------------------------------------------------|
 | park                 | GM or TN             | Provincial park the site is within or closest to; GM = Gros Morne and TN = Terra Nova  |
-| site                 | Site name            | Unique code assigned to each stream site                                               |
-| order                | Taxonomic name       | Order of the benthic invertebrates counted                                             |
-| family               | Taxonomic name       | Family of the benthic invertebrates counted                                            | 
-| count                |
+| site                 | site name            | Unique code assigned to each stream site                                               |
+| order                | taxonomic name       | Order of the benthic invertebrates counted                                             |
+| family               | taxonomic name       | Family of the benthic invertebrates counted                                            | 
+| count                | integer              | Count of benthic invertebrates in each taxonomic family                                |  
+
+### canopy_cover.csv: 
+Percent canopy cover each stream site, measured at 5 m intervals along the stream reach.  
+|       Variable       |       Units          |      Description                                                                       |
+|----------------------|----------------------|----------------------------------------------------------------------------------------|
+| park                 | GM or TN             | Provincial park the site is within or closest to; GM = Gros Morne and TN = Terra Nova  |
+| site                 | site name            | Unique code assigned to each stream site                                               |
+| distance_upstream    | m                    | Distance upstream along the sampling reach that each canopy cover measurement was taken|
+| canopy_cover         | %                    | Percent canopy cover along the cross section of the stream at each 5 m interval        |  
+
+### channel_measurements.csv: 
+Depth, width, and flow at each stream site, measured at three cross sections along the stream reach.
+|       Variable       |       Units          |      Description                                                                                                               |
+|----------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| park                 | GM or TN             | Provincial park the site is within or closest to; GM = Gros Morne and TN = Terra Nova                                          |
+| site                 | site name            | Unique code assigned to each stream site                                                                                       |
+| cross_section        | integer              | Number assigned to the each of the three randomly selected cross seactions where channel measurements were taken at each site  |
+| interval_across      | integer              | Interval across the stream width that depth and flow measurements were taken (number of measurements based on stream width)    |  
+| depth                | m                    | Water depth at each interval across the stream channel                                                                         |
+| flow1                | s                    | Elapsed time for the first flow measurement (used to calculate flow rate in m/s)                                               |  
+| flow2                | s                    | Elapsed time for the second flow measurement (used to calculate flow rate in m/s)                                              | 
+| flow3                | s                    | Elapsed time for the third flow measurement (used to calculate flow rate in m/s)                                               | 
+| flow_distance        | m                    | Distance used for each timed flow measurement (used to calculate flow rate in m/s)                                             |
+| wetted_width         | m                    | Width of the water in the stream channel                                                                                       |  
+| bankful_width        | m                    | Width of the stream channel (between banks)                                                                                    | 
+
 
