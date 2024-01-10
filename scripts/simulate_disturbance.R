@@ -253,7 +253,7 @@ for (i in 1:nrow(param_simulations)) {
   dPa = param_simulations_feasible$Pa[i]
   dNa = param_simulations_feasible$Na[i]
   
-  # create the Jacobian from Mathematica (CHANGE THIS!!)
+  # create the Jacobian from Mathematica
   jacob <- rbind(c(dNt*αt-ϵ-θt, dPt*αt, 0, 0, 0, 0), 
                  c(-(dNt*αt)+θt*μt, -lt-dPt*αt-ψt, 0, 0, 0, ψa), 
                  c(ϵ, 0, -γ-dHa*δ, -(dLt*δ), 0, 0), 
