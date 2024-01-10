@@ -55,20 +55,20 @@ Empirical data used for statistical analysis (*in situ* data collected from stre
 * [pebble_count.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/pebble_count.csv): Counts of substrate size and embeddedness at each stream site, following Canadian Aquatic Biomonitoring Network (CABIN) guidelines (CABIN Field Manual, 2009).
 * [periphyton_foil.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/periphyton_foil.csv): Mass of foil used to cover the surface area of the rocks that the periphyton samples were collected from. These values were converted to surface area following (Hauer & Lamberti, 2007).
 * [spatial_data.zip](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/spatial_data.zip): zip file containing shapefiles used to calculate disturbance metrics at each site
-    * catchments.shp: polygons of the catchments upstream of the sampling location at each stream site (largest spatial extent)  
-    * forest_disturbance.shp: polygons of forest disturbance from logging, insect outbreaks, fores fire, and a general "cleared" category within the site catchments  
-    * local_extent.shp: polygons of the smallest spatial extent at each stream site (10% of the catchment area, closest to the sampling location)  
-    * paved_roads.shp: lines of all paved roads within the site catchments
-    * riparian_extent.shp: polygons of the mid-sized spatial extent (100 m riparian buffer on each side of the stream and tributaries)  
     * stream_reach.shp: line showing the sampling reach at each stream site  
     * stream_sites.shp: points of sampling location for each stream site
+    * catchments.shp: polygons of the catchments upstream of the sampling location at each stream site (largest spatial extent)
+    * riparian_extent.shp: polygons of the mid-sized spatial extent (100 m riparian buffer on each side of the stream and tributaries)  
+    * local_extent.shp: polygons of the smallest spatial extent at each stream site (10% of the catchment area, closest to the sampling location)  
+    * forest_disturbance.shp: polygons of forest disturbance from logging, insect outbreaks, fores fire, and a general "cleared" category within the site catchments  
+    * paved_roads.shp: lines of all paved roads within the site catchments
     * trails.shp: lines of all trails within the site catchments  
     * unpaved_roads.shp: lines of all unpaved roads (including ATV trails) within the site catchments  
 * [surber_sampling.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/surber_sampling.csv): Number of surber samples collected from each stream site.
 * [tn.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/tn.csv): Dissolved nitrogen data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
 * [tss_filters.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/tss_filters.csv): Mass of total suspended solids measured from water samples collected at each stream site. Note that these measurements were below the instrument detection limit and were not included in our analyses.
 * [water_chemistry.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/water_chemistry.csv): Measurements of ph, water temperature, electrical conductivity, total dissolved solids, alkalinity, and turbidity from each stream site.
-* periphyton_afdm.csv
+* [periphyton_afdm.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/periphyton_afdm.csv): Ash free dry mass (AFDM) of periphyton samples collected at each stream site
 
 #### Not in repository:  
 * invert_coeficients.csv: Coefficients for converting benthic invertebrate length to mass using the power law allometric equation (Burgherr and Meyer, 1997). We used coefficients from (Benke et al., 1999) for these equations, using the “all insect” category for orders where no other coefficients were available (i.e., *collembola*, *oligochaeta*, *gastropoda*, *hirudinea*, *acarina*, *neuropteran*, *lepidoptera*, and *bivalvia*). Coefficients can be found through the link in the "Data sources" section above.
@@ -92,18 +92,18 @@ Scripts used for processing and analyzing our *in situ* and geospatial data.
 *  [global_sensitivity_analysis.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/global_sensitivity_analysis.R): Script for running the global sensitivity analysis to determine the most important parameters in our meta-ecosystem model.  
 *  [meta_ecosystem_analytical_equilibria.nb](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/meta_ecosystem_analytical_equilibria.nb): Code for generating the analytical equilibria and jacobian matrix for our meta-ecosystem model, written in Wolfram Language.
 *  [simulate_disturbance.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/simulate_disturbance.R): Script for simulating disturbance in our meta-ecosystem model, generates param_simulations_stable_10000.csv  
-*  [stats_models.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/stats_models.R): Script to evaluate top statistical models for each key stream response variable (i.e., benthic invertebrate biomass, EPT index, periphyton biomass, percent shredders, dissolved nitrogen, electrical conductivity, and embeddedness) to determine relationships between stream quality and terrestrial disturbance. Generates empirical_glm_results.csv  
+*  [stats_models.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/stats_models.R): Script to evaluate top general linear models for each key stream response variable (i.e., benthic invertebrate biomass, EPT index, periphyton biomass, percent shredders, dissolved nitrogen, electrical conductivity, and embeddedness) to determine relationships between stream quality and terrestrial disturbance. Generates empirical_glm_results.csv  
 *  [stream_data_cleaning.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/stream_data_cleaning.R): Script to clean and process *in situ* empirical data collected at each stream site, generates empirical_stream_data.csv and empirical_stream_data_standard_deviations.csv  
 
 ### Folder 3: output
 Key files generated by the various scripts, including statistsical analysis of the empirical data and simulations generated by the meta-ecosystem model  
-* [disturbance_data_large.csv](): 
-* [disturbance_data_med.csv](): 
-* [disturbance_data_small.csv](): 
-* [empirical_glm_results.csv](): 
-* [empirical_stream_data.csv](): mean *in situ* data measured at each stream site  
-* [empirical_stream_data_standard_deviations.csv](): 
-* [param_simulations_stable_10000.csv](): 
+* [disturbance_data_catchments.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/output/disturbance_data_catchment.csv): Disturbance metrics calculated from geospatial data at the catchment extent
+* [disturbance_data_riparian.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/output/disturbance_data_riparian.csv): Disturbance metrics calculated from geospatial data at the riparian extent
+* [disturbance_data_local.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/output/disturbance_data_local.csv): Disturbance metrics calculated from geospatial data at the local extent
+* [empirical_glm_results.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/output/empirical_glm_results.csv): 
+* [empirical_stream_data.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/output/empirical_stream_data.csv): Mean values from the triplicate samples collected *in situ* at each stream site  
+* [empirical_stream_data_standard_deviations.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/output/empirical_stream_data_standard_deviations.csv): Standard deviation of the triplicate samples collected *in situ* at each stream site to be paired with "empirical_stream_data.csv") 
+* [param_simulations_stable_10000.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/output/param_simulations_stable_10000.csv): Equilibrium states for the metaecosystem using 10000 randomly generated sets of parameters, filtered for stability. The first 10000 equilibria are selected from this file and used as the initial state for the disturbance simulations.
 
 ## Sharing and accessing the data
 This project is licensed under the MIT license, please see the [MIT license web page](https://opensource.org/license/mit/) for details.
