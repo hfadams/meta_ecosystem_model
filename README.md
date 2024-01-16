@@ -86,7 +86,7 @@ Hauer, F. R., & Lamberti, G. A. (2007). Methods in stream ecology. Elsevier Inc.
 Ministry of Environment. (2009). The Canadian Aquatic Biomonitoring Network Field Manual. http://www.unb.ca/cri/cabin_criweb.html  
 
 ### Folder 2: scripts
-Scripts used for processing and analyzing our *in situ* and geospatial data.  
+Scripts used for processing/analyzing our *in situ* and geospatial data and for simulating disturbances in our meta-ecosystem model.  
 *  [calculating_disturbance_metrics.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/calculating_disturbance_metrics.R): Processing geospatial data (i.e., forest distubance, roads and trails, landcover, and human impact index) to calculate metrics for each site at the catchment, riparian, and local spatial extent. Generates the following files: disturbance_data_large.csv, disturbance_data_med.csv, disturbance_data_small.csv    
 *  [correlogram.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/correlogram.R): script to generate the correlogram that was used to select non-correlated variables for our general linear models.
 *  [global_sensitivity_analysis.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/global_sensitivity_analysis.R): Script for running the global sensitivity analysis to determine the most important parameters in our meta-ecosystem model.  
