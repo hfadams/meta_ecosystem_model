@@ -66,14 +66,14 @@ Empirical data used for statistical analysis (*in situ* data collected from stre
     * unpaved_roads.shp: lines of all unpaved roads (including ATV trails) within the site catchments  
 * [surber_sampling.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/surber_sampling.csv): Number of surber samples collected from each stream site.
 * [tn.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/tn.csv): Dissolved nitrogen data from filtered water samples collected at each stream site, measured with a DOC/TDN analyzer.
-* [tss_filters.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/tss_filters.csv): Mass of total suspended solids measured from water samples collected at each stream site. Note that these measurements were below the instrument detection limit and were not included in our analyses.
 * [water_chemistry.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/water_chemistry.csv): Measurements of ph, water temperature, electrical conductivity, total dissolved solids, alkalinity, and turbidity from each stream site.
-* [periphyton_afdm.csv](https://github.com/hfadams/meta_ecosystem_model/blob/main/data/periphyton_afdm.csv): Ash free dry mass (AFDM) of periphyton samples collected at each stream site
 
 #### Not in repository:  
 * invert_coeficients.csv: Coefficients for converting benthic invertebrate length to mass using the power law allometric equation (Burgherr and Meyer, 1997). We used coefficients from (Benke et al., 1999) for these equations, using the “all insect” category for orders where no other coefficients were available (i.e., *collembola*, *oligochaeta*, *gastropoda*, *hirudinea*, *acarina*, *neuropteran*, *lepidoptera*, and *bivalvia*). Coefficients can be found through the link in the "Data sources" section above.
 * invert_functional_groups.csv: Functional groups assigned to each taxa using data from the USGS benthic invertebrate database (see "Data sources: section above)
 * invert_traits_usgs.csv: File containing mean length values for each benthic invertebrate taxa from the USGS benthic invertebrate database (see "Data sources: section above). These data were used in the power law allometric equation (Burgherr and Meyer, 1997).
+* tss_filters.csv: Mass of total suspended solids measured from water samples collected at each stream site. Note that these measurements were below the instrument detection limit and were not included in our analyses.
+* periphyton_afdm.csv: Ash free dry mass (AFDM) of periphyton samples collected at each stream site
 
 #### References:  
 
