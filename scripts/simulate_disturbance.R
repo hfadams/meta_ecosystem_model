@@ -345,7 +345,7 @@ param_simulations_stable <- param_simulations_stability_test %>%
 toc()
 
 # export file with all feasible and stable parameter combinations
-write.csv(param_simulations_stable, "output/param_simulations_stable_10000.csv", row.names=FALSE)
+write.csv(param_simulations_stable, "output/param_simulations_stable.csv", row.names=FALSE)
 
 # first make a function that takes in one row and generates a dataset for the sensitivity test
 expand_row <- function(master_df,
@@ -651,53 +651,74 @@ sensitivity_params_θt_μt <- simulate_disturbance(master_df=(param_simulations_
 
 feasible_data_θt_μt <- feasibility_check(sensitivity_params_θt_μt)
 stable_data_θt_μt <- stability_check(feasible_data_θt_μt)
-write.csv(stable_data_θt_μt, "output/stable_data_θt_μt_10000.csv", row.names=FALSE)
+write.csv(stable_data_θt_μt, "output/stable_data_θt_μt.csv", row.names=FALSE)
 toc()
 
 tic("generate data for forest simulation plot")
 # transform data to matrix form
-surface_data_forestry <- stable_data_θt_μt %>% 
-  select(θt, μt, Ha, Pa, ha_prod, pa_prod, Na, Nt) %>% 
+surface_data_forestry <- forest_disturbance_data %>% 
+  select(θt, μt, Ha, Pa, ha_prod, pa_prod, Na, Nt, Lt, Pt) %>% 
   group_by(θt, μt) %>% 
-  summarise_at(vars(Ha, Pa, ha_prod, pa_prod, Na, Nt),
-               funs(mean(., na.rm=TRUE))) %>% 
+  summarise_at(vars(Ha, Pa, ha_prod, pa_prod, Na, Nt, Lt, Pt),
+               funs(median(., na.rm=TRUE))) %>% 
   ungroup()
 
-write.csv(surface_data_forestry, "output/surface_data_forestry_10000.csv", row.names=FALSE)
+write.csv(surface_data_forestry, "output/surface_data_forestry.csv", row.names=FALSE)
 
 p1 <- ggplot(surface_data_forestry, aes(θt, μt, z=Ha)) +
   geom_contour_filled() +
   theme_classic() + 
-   guides(fill=guide_legend(title="Ha density")) + 
+  guides(fill=guide_legend(title="Ha density")) + 
   xlab("") + 
-  ylab("proportion recycled (μt)")
+  ylab("Recycling (μt)") + 
+  scale_y_reverse()
 
 p2 <- ggplot(surface_data_forestry, aes(θt, μt, z=ha_prod)) +
   geom_contour_filled() +
   theme_classic() + 
   guides(fill=guide_legend(title="Ha productivity")) + 
   xlab("") + 
-  ylab("")
+  ylab("") + 
+  scale_y_reverse()
 
 p3 <- ggplot(surface_data_forestry, aes(θt, μt, z=Pa)) +
   geom_contour_filled() +
   theme_classic() + 
   guides(fill=guide_legend(title="Pa density")) + 
-  xlab("death rate of Pt (θt)") + 
-  ylab("proportion recycled (μt)")
+  xlab("") + 
+  ylab("Recycling (μt)") + 
+  scale_y_reverse()
 
 p4 <- ggplot(surface_data_forestry, aes(θt, μt, z=pa_prod)) +
   geom_contour_filled() +
   theme_classic() + 
   guides(fill=guide_legend(title="Pa productivity")) + 
-  xlab("death rate of Pt (θt)") + 
-  ylab("")
+  xlab("") + 
+  ylab("") + 
+  scale_y_reverse()
 
-forestry_surface_plots <- grid.arrange(p1, p2, p3, p4, nrow=2)
+p5 <- ggplot(surface_data_forestry, aes(θt, μt, z=Lt)) +
+  geom_contour_filled() +
+  theme_classic() + 
+  guides(fill=guide_legend(title="Lt density")) + 
+  xlab("tree death rate (θt)") + 
+  ylab("Recycling (μt)") + 
+  scale_y_reverse()
+
+p6 <- ggplot(surface_data_forestry, aes(θt, μt, z=Na)) +
+  geom_contour_filled() +
+  theme_classic() + 
+  guides(fill=guide_legend(title="Na density")) + 
+  xlab("tree death rate (θt)") + 
+  ylab("") + 
+  scale_y_reverse()
+
+forestry_surface_plots <- grid.arrange(p1, p2, p3, p4, p5, p6, nrow=3)
+
 toc()
-ggsave(file = "output/surafce_plots_forestry_10000.svg", plot=forestry_surface_plots, width=12, height=10)
+ggsave(file = "output/surafce_plots_forestry.svg", plot=forestry_surface_plots, width=12, height=10)
 
-p5 <- ggplot(surface_data_forestry, aes(θt, μt, z=Na)) +
+p7 <- ggplot(surface_data_forestry, aes(θt, μt, z=Na)) +
   geom_contour_filled() +
   theme_classic() + 
   guides(fill=guide_legend(title="Na density")) + 
@@ -705,15 +726,16 @@ p5 <- ggplot(surface_data_forestry, aes(θt, μt, z=Na)) +
   ylab("proportion recycled (1-μt)") +
   scale_y_reverse()
 
-p6 <- ggplot(surface_data_forestry, aes(θt, μt, z=Nt)) +
+p8 <- ggplot(surface_data_forestry, aes(θt, μt, z=Nt)) +
   geom_contour_filled() +
   theme_classic() + 
   guides(fill=guide_legend(title="Nt density")) + 
   xlab("death rate of Pt (θt)") + 
   ylab("") +
   scale_y_reverse()
-forestry_nutrient_surface_plots <- grid.arrange(p5, p6, nrow=1)
-ggsave(file = "output/surafce_plots_nutrients_forestry_10000.svg", plot=forestry_nutrient_surface_plots, width=12, height=6)
+forestry_nutrient_surface_plots <- grid.arrange(p7, p8, nrow=1)
+
+ggsave(file = "output/surafce_plots_nutrients_forestry.svg", plot=forestry_nutrient_surface_plots, width=12, height=6)
 
 tic("atv trail simulation")
 # 2) ATV trails
@@ -731,19 +753,19 @@ sensitivity_params_βa_αa <- simulate_disturbance(master_df=(param_simulations_
 
 feasible_data_βa_αa <- feasibility_check(sensitivity_params_βa_αa)
 stable_data_βa_αa <- stability_check(feasible_data_βa_αa)
-write.csv(stable_data_βa_αa, "output/stable_data_βa_αa_10000.csv", row.names=FALSE)
+write.csv(stable_data_βa_αa, "output/stable_data_βa_αa.csv", row.names=FALSE)
 toc()
 
 tic("plot atv simulation")
 # transform data to matrix form
-surface_data_atv <- stable_data_βa_αa %>% 
-  select(βa, αa, Ha, Pa, ha_prod, pa_prod, Na, Nt) %>% 
+surface_data_atv <- atv_disturbance_data %>% 
+  select(βa, αa, Ha, Pa, ha_prod, pa_prod, Na, Nt, Lt, Pt) %>% 
   group_by(βa, αa) %>% 
-  summarise_at(vars(Ha, Pa, ha_prod, pa_prod, Na, Nt),
-               funs(mean(., na.rm=TRUE))) %>% 
+  summarise_at(vars(Ha, Pa, ha_prod, pa_prod, Na, Nt, Lt, Pt),
+               funs(median(., na.rm=TRUE))) %>% 
   ungroup()
 
-write.csv(surface_data_atv, "output/surface_data_atv_10000.csv", row.names=FALSE)
+write.csv(surface_data_atv, "output/surface_data_atv.csv", row.names=FALSE)
 
 p1 <- ggplot(surface_data_atv, aes(βa, αa, z=Ha)) +
   geom_contour_filled() +
@@ -782,7 +804,7 @@ p4 <- ggplot(surface_data_atv, aes(βa, αa, z=pa_prod)) +
   scale_y_reverse()
 
 atv_surface_plots <- grid.arrange(p1, p2, p3, p4, nrow=2)
-ggsave(file = "output/surafce_plots_atv_10000.svg", plot=atv_surface_plots, width=12, height=10)
+ggsave(file = "output/surafce_plots_atv.svg", plot=atv_surface_plots, width=12, height=10)
 toc() 
 
 p5 <- ggplot(surface_data_atv, aes(βa, αa, z=Na)) +
@@ -804,5 +826,5 @@ p6 <- ggplot(surface_data_atv, aes(βa, αa, z=Nt)) +
   scale_y_reverse()
 
 atv_nutrient_surface_plots <- grid.arrange(p5, p6, nrow=1)
-ggsave(file = "output/surafce_plots_atv_nutrients_10000.svg", plot=atv_nutrient_surface_plots, width=12, height=6)
+ggsave(file = "output/surafce_plots_atv_nutrients.svg", plot=atv_nutrient_surface_plots, width=12, height=6)
 
