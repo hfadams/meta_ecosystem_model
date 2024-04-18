@@ -1,7 +1,7 @@
-# Code for processing empirical data and simulating disturbances in our meta-ecosystem model  
-This folder contains the main scripts for 1) processing and 2) analyzing our empirical data, and 3) simulating disturbance in our meta-ecosystem model.
+# Code for processing empirical data and simulating disturbances in the meta-ecosystem model  
+This folder contains the main scripts for processing and analyzing our empirical data, and simulating disturbance in our meta-ecosystem model:
 
-1. Stream data os cleaned using the *stream_data_cleaning.R* script, and disturbance metrics are calculated at three spatial extents at each stream site using *calculating_disturbance_metrics.R*
+1. Stream data is cleaned using the *stream_data_cleaning.R* script, and disturbance metrics are calculated at three spatial extents at each stream site using *calculating_disturbance_metrics.R*
 2. The *correlogram.R* script is used to make sure that there is no significant correlation between variables used in our statistical models, and the *stats_models.R* script is used to compare general linear models for each of our stream quality metrics to determine relationships between terrestrial disturbance and stream quality.
 3. The *meta_ecosystem_analytical_equilibria.nb* script is used to generate analytical equilibria and a jacobian matrix for the meta-ecosystem model, which is them used in the *simulate_disturbance.R* script to first generate 10,000 stable equilibria and simulate two types of terrestrial disturbance across a range of intensities. The *global_sensitivity_analysis.R* script was used during this process determine key parameters that could be used to simulate disturbance in our model.
 
