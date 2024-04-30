@@ -1415,11 +1415,10 @@ plotting_data <- model_summary %>%
 invert_bar_data <- plotting_data %>% 
   group_by(model, extent) %>%
   filter(aicc == min(aicc)) %>%
-  filter(predictor_var != "(Intercept)")
-invert_bar_data$significant <- dplyr::case_when(
-  invert_bar_data$p_val < 0.05 ~ TRUE,
-  invert_bar_data$p_val >= 0.05 ~ FALSE
-)
+  filter(predictor_var != "(Intercept)") %>%
+  mutate(significant = case_when(p_val < 0.05 ~ TRUE, p_val >= 0.05 ~ FALSE)) %>% 
+  mutate(sig_negative = case_when((p_val < 0.05 ) & (estimate < 0 ) ~ TRUE, TRUE ~ FALSE)) %>% 
+  mutate(sig_positive = case_when((p_val < 0.05 ) & (estimate > 0 ) ~ TRUE, TRUE ~ FALSE))
 
 # filter  models within 2 ΔAICc of the null model
 bar_data_local <- invert_bar_data %>% filter(extent=="local") %>% filter(model != "periphyton biomass") %>% filter(model != "embeddedness")
@@ -1448,8 +1447,18 @@ p1 <- ggplot(bar_data_local,
   facet_grid(cols = vars(model)) +
   theme(strip.text = element_text(
     size = 8)) + 
-  geom_text(aes(label = ifelse(significant, "*", "")),
-            size = 10 / .pt) + 
+  geom_text(aes(label = ifelse(sig_positive, "*", ""), 
+                group = model),
+                position = position_dodge(width=0.9),
+                hjust = -2,
+                vjust = 1.2,
+            size = 6) + 
+  geom_text(aes(label = ifelse(sig_negative, "*", ""), 
+                group = model),
+                position = position_dodge(width=0.9),
+                hjust = 2,
+                vjust = 1.2,
+            size = 6) + 
   geom_errorbar(aes(ymin=estimate-std_error, ymax=estimate+std_error), width=.2,
                 position=position_dodge(.9))
 
@@ -1474,8 +1483,18 @@ p2 <- ggplot(bar_data_riparian,
   facet_grid(cols = vars(model)) +
   theme(strip.text = element_text(
     size = 8)) + 
-  geom_text(aes(label = ifelse(significant, "*", "")),
-            size = 10 / .pt) + 
+  geom_text(aes(label = ifelse(sig_positive, "*", ""), 
+                group = model),
+                position = position_dodge(width=0.9),
+                hjust = -2,
+                vjust = 1.2,
+            size = 6) + 
+  geom_text(aes(label = ifelse(sig_negative, "*", ""), 
+                group = model),
+                position = position_dodge(width=0.9),
+                hjust = 2,
+                vjust = 1.2,
+            size = 6) + 
   geom_errorbar(aes(ymin=estimate-std_error, ymax=estimate+std_error), width=.2,
                 position=position_dodge(.9))
 
@@ -1500,8 +1519,18 @@ p3 <- ggplot(bar_data_catchment,
   facet_grid(cols = vars(model)) +
   theme(strip.text = element_text(
     size = 8)) + 
-  geom_text(aes(label = ifelse(significant, "*", "")),
-            size = 10 / .pt) + 
+  geom_text(aes(label = ifelse(sig_positive, "*", ""), 
+                group = model),
+                position = position_dodge(width=0.9),
+                hjust = -2,
+                vjust = 1.2,
+            size = 6) + 
+  geom_text(aes(label = ifelse(sig_negative, "*", ""), 
+                group = model),
+                position = position_dodge(width=0.9),
+                hjust = 2,
+                vjust = 1.2,
+            size = 6) + 
   geom_errorbar(aes(ymin=estimate-std_error, ymax=estimate+std_error), width=.2,
                 position=position_dodge(.9))
 
