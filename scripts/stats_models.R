@@ -99,6 +99,11 @@ rescaled_data_catchment <- rescale_data(site_data_catchment)
 rescaled_data_riparian <- rescale_data(site_data_riparian)
 rescaled_data_local <- rescale_data(site_data_local)
 
+# export
+write.csvrescaled_data_catchment, "output/rescaled_data_catchment.csv", row.names=FALSE)
+write.csv(rescaled_data_riparian, "output/rescaled_data_riparian.csv", row.names=FALSE)
+write.csv(rescaled_data_local, "output/rescaled_data_local.csv", row.names=FALSE)
+
 # 3) Functions for each model comparison ----
 
 # function for extracting model results
@@ -1308,9 +1313,6 @@ model_summary_local$extent = "local"
 model_summary <- rbind(model_summary_catchment, 
                        model_summary_riparian, 
                        model_summary_local)
-
-# export model summary
-#write.csv(model_summary, "output/empirical_glm_results_unformatted.csv", row.names=FALSE)
 
 # 5) Format and export model summary ----
 
