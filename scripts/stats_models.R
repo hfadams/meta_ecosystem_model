@@ -102,30 +102,26 @@ rescaled_data_small <- rescale_data(site_data_local)
 # 3) Functions for each model comparison ----
 
 # function for extracting model results
-extract_model_summary <- function(model, model_number, model_name){
-  
+extract_model_summary <- function(model, model_number, model_name) {
+
   # extract items from the model output
   model_summary <- summary(model)
-  
+
   r2 <- model_summary$adj.r.squared
-  
-  # select coefficients and convert to dataframe
-  mod_summary_coefficients <- model_summary$coefficients
-  model_summary_df <- mod_summary_coefficients |> data.frame() |> 
-    tibble::rownames_to_column(var = "predictor_var")
-  
-  # add a column for all values in summary table
-  mod_summary <- model_summary_df |> 
-    dplyr::mutate(model_num = model_number, 
-                  model = model_name, 
-                  adj_r2 = r2
-                  ) |> 
-    dplyr::rename("estimate" = "Estimate", 
-                  "std_error" = "Std..Error", 
-                  "t_val" = "t.value", 
+
+  # compile into dataframe
+  model_summary <- model_summary$coefficients %>%
+    data.frame() %>%
+    tibble::rownames_to_column(var = "predictor_var") %>%
+    dplyr::mutate(model_num = model_number,
+                  model = model_name,
+                  adj_r2 = r2) |>
+    dplyr::rename("estimate" = "Estimate",
+                  "std_error" = "Std..Error",
+                  "t_val" = "t.value",
                   "p_val" = "Pr...t..")
-  
-  return(mod_summary)
+
+  return(model_summary)
 }
 
 # Model 1: Benthic invertebrate biomass per $cm^2$  
@@ -1322,46 +1318,46 @@ model_summary <- rbind(model_summary_large,
 formatted_model_output <- model_summary %>% 
   mutate(full_estimate = paste(as.character(round(estimate, 2)), "(", 
                                as.character(round(std_error, 2)), ")")) %>%
-  mutate(across("predictor_var", str_replace, "total_disturbance", "forest disturbance")) %>%
-  mutate(across("predictor_var", str_replace, "total_road_density", "road density")) %>% 
-  mutate(across("predictor_var", str_replace, "high_human_impact", "human impact")) %>% 
-  mutate(across("predictor_var", str_replace, "wetted_width", "wetted width")) %>% 
-  mutate(across("predictor_var", str_replace, "wolmanD50", "substrate size")) %>%
-  mutate(across("predictor_var", str_replace, "percent_lake", "% lake")) %>% 
-  mutate(across("predictor_var", str_replace, "percent_wetland", "% wetland")) %>% 
-  mutate(across("predictor_var", str_replace, "percent_barren", "% barren")) %>%
-  mutate(across("predictor_var", str_replace, "(Intercept)", "intercept")) %>% 
-  mutate(across("model", str_replace, "periphyton_biomass", "periphyton biomass")) %>% 
-  mutate(across("model", str_replace, "ept_index", "EPT index")) %>% 
-  mutate(across("model", str_replace, "invertebrate_biomass", "invertebrate biomass")) %>% 
-  mutate(across("model", str_replace, "nitrogen", "total nitrogen")) %>% 
-  mutate(across("model", str_replace, "shredders", "% shredders")) %>% 
-  mutate(across("model_num", str_replace, "null_mod", "null")) %>%
-  mutate(across("model_num", str_replace, "mod1", "1")) %>%
-  mutate(across("model_num", str_replace, "mod2", "2")) %>%
-  mutate(across("model_num", str_replace, "mod3", "3")) %>%
-  mutate(across("model_num", str_replace, "mod4", "4")) %>%
-  mutate(across("model_num", str_replace, "mod5", "5")) %>%
-  mutate(across("model_num", str_replace, "mod6", "6")) %>%
-  mutate(across("model_num", str_replace, "mod7", "7")) %>%
-  mutate(across("model_num", str_replace, "mod8", "8")) %>%
-  mutate(across("model_num", str_replace, "mod9", "9")) %>%
-  mutate(across("model_num", str_replace, "mod10", "10")) %>%
-  mutate(across("model_num", str_replace, "mod11", "11")) %>%
-  group_by(extent, model) %>% 
-  select(extent, 
-         model, 
-         model_num, 
+  mutate(predictor_var =  case_when(predictor_var %in% "total_disturbance" ~ "forest disturbance",
+                                    predictor_var %in% "total_road_density" ~ "road density",
+                                    predictor_var %in% "high_human_impact" ~ "human impact",
+                                    predictor_var %in% "wetted_width" ~ "wetted width",
+                                    predictor_var %in% "wolmanD50" ~ "substrate size",
+                                    predictor_var %in% "percent_lake" ~ "% lake",
+                                    predictor_var %in% "percent_wetland" ~ "% wetland",
+                                    predictor_var %in% "percent_barren" ~ "% barren",
+                                    predictor_var %in% "(Intercept)" ~ "intercept")) %>%
+  mutate(model =  case_when(model %in% "periphyton_biomass" ~ "periphyton biomass",
+                            model %in% "ept_index" ~ "EPT index",
+                            model %in% "invertebrate_biomass" ~ "invertebrate biomass",
+                            model %in% "specific_conductivity" ~ "specific conductivity",
+                            model %in% "nitrogen" ~ "total nitrogen",
+                            model %in% "embeddedness" ~ "embeddedness",
+                            model %in% "shredders" ~ "% shredders")) %>%
+  mutate(model_num =  case_when(model_num %in% "null_mod" ~ "null",
+                                model_num %in% "mod1" ~ "1",
+                                model_num %in% "mod2" ~ "2",
+                                model_num %in% "mod3" ~ "3",
+                                model_num %in% "mod4" ~ "4",
+                                model_num %in% "mod5" ~ "5",
+                                model_num %in% "mod6" ~ "6",
+                                model_num %in% "mod7" ~ "7",
+                                model_num %in% "mod8" ~ "8",
+                                model_num %in% "mod9" ~ "9",
+                                model_num %in% "mod10" ~ "10",
+                                model_num %in% "mod11" ~ "11")) %>%
+  select(extent,
+         model,
+         model_num,
          k,
          predictor_var,
-         full_estimate, 
-         log_likelihood, 
+         full_estimate,
+         log_likelihood,
          delta_aicc,
          aicc,
-         adj_r2) %>% 
-  rename("estimate" = "full_estimate", 
-         "predictor" = "predictor_var", 
-         )
+         adj_r2) %>%
+  rename("estimate" = "full_estimate",
+         "predictor" = "predictor_var")
 
 # now format the results:
 # select all rows that I want to transpose, keeping id rows (park, site, model, model#)
@@ -1391,151 +1387,3 @@ merged_stats_data <- stats_model_fit %>%
   full_join(stats_data_wide, by=c("extent", "model", "model_num"))
 
 write.csv(merged_stats_data, "output/empirical_glm_results.csv", row.names=FALSE)
-
-# 6) Plot results from the top models ----
-
-# first replace all column names with a clean label
-plotting_data <- model_summary %>% 
-  mutate(dplyr::across("predictor_var", str_replace, "total_disturbance", "forest disturbance")) %>% 
-  mutate(dplyr::across("predictor_var", str_replace, "total_road_density", "unpaved road density")) %>% 
-  mutate(dplyr::across("predictor_var", str_replace, "high_human_impact", "human impact index")) %>% 
-  mutate(dplyr::across("predictor_var", str_replace, "wetted_width", "wetted width")) %>% 
-  mutate(dplyr::across("predictor_var", str_replace, "wolmanD50", "substrate size")) %>%
-  mutate(dplyr::across("predictor_var", str_replace, "percent_lake", "% lake")) %>% 
-  mutate(dplyr::across("predictor_var", str_replace, "percent_wetland", "% wetland")) %>% 
-  mutate(dplyr::across("model", str_replace, "periphyton_biomass", "periphyton biomass")) %>% 
-  mutate(dplyr::across("model", str_replace, "specific_conductivity", "specific conductivity")) %>% 
-  mutate(dplyr::across("model", str_replace, "ept_index", "EPT index")) %>% 
-  mutate(dplyr::across("model", str_replace, "invertebrate_biomass", "invertebrate biomass")) %>% 
-  mutate(dplyr::across("model", str_replace, "nitrogen", "total dissolved nitrogen")) %>% 
-  mutate(dplyr::across("model", str_replace, "shredders", "% shredders"))
-
-# plot on vertical histogram
-# 1) all spatial extents together
-invert_bar_data <- plotting_data %>% 
-  group_by(model, extent) %>%
-  filter(aicc == min(aicc)) %>%
-  filter(predictor_var != "(Intercept)") %>%
-  mutate(significant = case_when(p_val < 0.05 ~ TRUE, p_val >= 0.05 ~ FALSE)) %>% 
-  mutate(sig_negative = case_when((p_val < 0.05 ) & (estimate < 0 ) ~ TRUE, TRUE ~ FALSE)) %>% 
-  mutate(sig_positive = case_when((p_val < 0.05 ) & (estimate > 0 ) ~ TRUE, TRUE ~ FALSE))
-
-# filter  models within 2 ΔAICc of the null model
-bar_data_local <- invert_bar_data %>% filter(extent=="local") %>% filter(model != "periphyton biomass") %>% filter(model != "embeddedness")
-bar_data_riparian <- invert_bar_data %>% filter(extent=="riparian") %>% filter(model != "periphyton biomass") %>% filter(model != "embeddedness")
-bar_data_catchment <- invert_bar_data %>% filter(extent=="catchment") %>% filter(model != "periphyton biomass") %>% filter(model != "total nitrogen") %>% filter(model != "embeddedness")
-
-# generate a plot for each spatial extent
-p1 <- ggplot(bar_data_local, 
-                             aes(predictor_var, 
-                                 estimate, 
-                                 fill=predictor_var)) +
-  geom_col()+
-  theme_classic() + 
-  theme(legend.position="none", 
-        axis.text.x = element_text(angle = 90, 
-                                   vjust = 0.5, 
-                                   hjust=1)) + 
-  coord_flip() + 
-  geom_hline(yintercept=0, 
-             linetype="solid", 
-             color="black", 
-             size=0.5) + 
-  ylab("") + 
-  xlab("") + 
-  scale_fill_viridis_d() + 
-  facet_grid(cols = vars(model)) +
-  theme(strip.text = element_text(
-    size = 8)) + 
-  geom_text(aes(label = ifelse(sig_positive, "*", ""), 
-                group = model),
-                position = position_dodge(width=0.9),
-                hjust = -2,
-                vjust = 1.2,
-            size = 6) + 
-  geom_text(aes(label = ifelse(sig_negative, "*", ""), 
-                group = model),
-                position = position_dodge(width=0.9),
-                hjust = 2,
-                vjust = 1.2,
-            size = 6) + 
-  geom_errorbar(aes(ymin=estimate-std_error, ymax=estimate+std_error), width=.2,
-                position=position_dodge(.9))
-
-p2 <- ggplot(bar_data_riparian, 
-             aes(predictor_var, 
-                 estimate, 
-                 fill=predictor_var)) +
-  geom_col()+
-  theme_classic() + 
-  theme(legend.position="none", 
-        axis.text.x = element_text(angle = 90, 
-                                   vjust = 0.5, 
-                                   hjust=1)) + 
-  coord_flip() + 
-  geom_hline(yintercept=0, 
-             linetype="solid", 
-             color="black", 
-             size=0.5) + 
-  ylab("") + 
-  xlab("") + 
-  scale_fill_viridis_d() + 
-  facet_grid(cols = vars(model)) +
-  theme(strip.text = element_text(
-    size = 8)) + 
-  geom_text(aes(label = ifelse(sig_positive, "*", ""), 
-                group = model),
-                position = position_dodge(width=0.9),
-                hjust = -2,
-                vjust = 1.2,
-            size = 6) + 
-  geom_text(aes(label = ifelse(sig_negative, "*", ""), 
-                group = model),
-                position = position_dodge(width=0.9),
-                hjust = 2,
-                vjust = 1.2,
-            size = 6) + 
-  geom_errorbar(aes(ymin=estimate-std_error, ymax=estimate+std_error), width=.2,
-                position=position_dodge(.9))
-
-p3 <- ggplot(bar_data_catchment, 
-             aes(predictor_var, 
-                 estimate, 
-                 fill=predictor_var)) +
-  geom_col() +
-  theme_classic() + 
-  theme(legend.position="none", 
-        axis.text.x = element_text(angle = 90, 
-                                   vjust = 0.5, 
-                                   hjust=1)) + 
-  coord_flip() + 
-  geom_hline(yintercept=0, 
-             linetype="solid", 
-             color="black", 
-             size=0.5) + 
-  ylab("") + 
-  xlab("") + 
-  scale_fill_viridis_d() + 
-  facet_grid(cols = vars(model)) +
-  theme(strip.text = element_text(
-    size = 8)) + 
-  geom_text(aes(label = ifelse(sig_positive, "*", ""), 
-                group = model),
-                position = position_dodge(width=0.9),
-                hjust = -2,
-                vjust = 1.2,
-            size = 6) + 
-  geom_text(aes(label = ifelse(sig_negative, "*", ""), 
-                group = model),
-                position = position_dodge(width=0.9),
-                hjust = 2,
-                vjust = 1.2,
-            size = 6) + 
-  geom_errorbar(aes(ymin=estimate-std_error, ymax=estimate+std_error), width=.2,
-                position=position_dodge(.9))
-
-model_summary_plot <- grid.arrange(p2, p3, nrow=3, ncol=1) 
-
-# export
-ggsave(file="output/model_summary_combined.svg", plot=model_summary_plot, width=8, height=6)
-ggsave(file="output/model_summary_local.svg", plot=p1, width=7, height=2)
