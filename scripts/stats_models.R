@@ -95,9 +95,9 @@ rescale_data <- function(data){
   return(rescaled_data)
 }
 
-rescaled_data_large <- rescale_data(site_data_catchment)
-rescaled_data_med <- rescale_data(site_data_riparian)
-rescaled_data_small <- rescale_data(site_data_local)
+rescaled_data_catchment <- rescale_data(site_data_catchment)
+rescaled_data_riparian <- rescale_data(site_data_riparian)
+rescaled_data_local <- rescale_data(site_data_local)
 
 # 3) Functions for each model comparison ----
 
@@ -1296,18 +1296,18 @@ run_all_models <- function(data){
   return(all_models_df)
 }
 
-model_summary_large <- run_all_models(rescaled_data_large)
-model_summary_med <- run_all_models(rescaled_data_med)
-model_summary_small <- run_all_models(rescaled_data_small)
+model_summary_catchment <- run_all_models(rescaled_data_catchment)
+model_summary_riparian <- run_all_models(rescaled_data_riparian)
+model_summary_local <- run_all_models(rescaled_data_local)
 
 # first combine data for all scales
-model_summary_large$extent = "catchment"
-model_summary_med$extent = "riparian"
-model_summary_small$extent = "local"
+model_summary_catchment$extent = "catchment"
+model_summary_riparian$extent = "riparian"
+model_summary_local$extent = "local"
 
-model_summary <- rbind(model_summary_large, 
-                       model_summary_med, 
-                       model_summary_small)
+model_summary <- rbind(model_summary_catchment, 
+                       model_summary_riparian, 
+                       model_summary_local)
 
 # export model summary
 #write.csv(model_summary, "output/empirical_glm_results_unformatted.csv", row.names=FALSE)
