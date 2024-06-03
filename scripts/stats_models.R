@@ -5,9 +5,8 @@
 # 1) Read in and compile data for each spatial extent
 # 2) Rescale the data from 0-1 so results can be compared between models
 # 3) Create functions for each model comparison
-# 4) Use functions to compare models at each spatial extent
-# 5) Format and export model results 
-# 6) Generate summary plot
+# 4) Compare models at each spatial extent
+# 5) Format and export model results
 
 # 1) Read in and compile data ----
 
