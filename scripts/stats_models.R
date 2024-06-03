@@ -28,9 +28,16 @@ disturbance_data_local <- read.csv("output/disturbance_data_local.csv")
 field_data <- read.csv("output/all_site_data_means.csv")
 
 # function to combine into one dataset and select relevant data
-combine_data <- function(join_data){
+combine_data <- function(field_data, spatial_data) {
+
+  #'@description this function joins field data with disturbance data from a
+  #'specific spatial extent
+  #'@param field_data data collected from each stream site (i.e., all non-spatial data)
+  #'@param spatial_data spatial data from one of three spatial extents
+  #'@return a data frame with field data and spatial data combined
+
   site_data <- field_data %>% 
-    full_join(join_data, 
+    full_join(spatial_data, 
               by=c("park", "site")) %>% 
     select(park, 
            site, 
@@ -59,18 +66,30 @@ combine_data <- function(join_data){
   return(site_data)
 }
 
-site_data_catchment <- combine_data(disturbance_data_catchment)
-site_data_riparian <- combine_data(disturbance_data_riparian)
-site_data_local <- combine_data(disturbance_data_local)
+site_data_catchment <- combine_data(field_data, disturbance_data_catchment)
+site_data_riparian <- combine_data(field_data, disturbance_data_riparian)
+site_data_local <- combine_data(field_data, disturbance_data_local)
 
 # 2) Rescale data with min max scaling ----
 
 # Rescale function
-min_max_scale <- function(x, na.rm = TRUE) {
+min_max_scale <- function(x) {
+
+  #'@description this function rescales the vector input based on
+  #' the vector's max and min values
+  #'@param x vector data to be rescaled
+  #'@return a vector of rescaled values
+  
   return((x- min(x)) /(max(x)-min(x)))
 }
 
-rescale_data <- function(data){
+rescale_data <- function(data) {
+
+  #'@description this function rescales specific columns in the
+  #' input dataframe using the mas_min_scale function
+  #'@param data dataframe with columns to be rescaled
+  #'@return a dataframe with rescaled columns
+  
   rescaled_data <- data %>% 
     mutate(total_disturbance= min_max_scale(data$total_disturbance),
            total_road_density = min_max_scale(data$total_road_density),
@@ -107,6 +126,16 @@ write.csv(rescaled_data_local, "output/rescaled_data_local.csv", row.names=FALSE
 
 # function for extracting model results
 extract_model_summary <- function(model, model_number, model_name) {
+
+  #'@description this function takes the output from a general linear model
+  #'and returns it as a formatted dataframe
+  #'@param model output from the lm function
+  #'@param model_number number of the model in the set of 11 models.
+  #' Can be "null_mod", "mod1", "mod2", etc.
+  #'@param model_name name of the response vartiable in the model set,
+  #' can be "ept_index", "invertebrate_biomass", "periphyton_biomass",
+  #' "specific_conductivity", "nitrogen", "embeddedness", or "shredders"
+  #'@return a formatted data frame with key components of the model summary
 
   # extract items from the model output
   model_summary <- summary(model)
