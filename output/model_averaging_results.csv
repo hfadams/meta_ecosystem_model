@@ -1,0 +1,33 @@
+extent,model,parameter,beta_est,st_error,conf_level,lower_cl,upper_cl
+local,invertebrate biomass,road density,0.592732648,0.165346664,0.95,0.268659142,0.916806155
+local,EPT index,forest disturbance,0.43926502,0.178414957,0.95,0.08957813,0.788951911
+local,periphyton biomass,,0.196539131,0.037672245,,,
+local,% shredders,road density,0.273823649,0.166852438,0.95,-0.05320112,0.600848418
+local,% shredders,forest disturbance,-0.204195487,0.157862784,0.95,-0.513600858,0.105209884
+local,% shredders,wetted width,-0.265209435,0.15235344,0.95,-0.56381669,0.033397819
+local,% shredders,substrate size,-0.495682829,0.18279001,0.95,-0.853944666,-0.137420992
+local,% shredders,human impact index,-0.322628326,0.107627016,0.95,-0.533573402,-0.111683251
+local,total nitrogen,,0.250319101,0.04374013,,,
+local,specific conductivity,,0.175379705,0.042560128,,,
+local,embeddedness,,0.569047619,0.049354473,,,
+riparian,invertebrate biomass,,0.25124891,0.046117718,,,
+riparian,EPT index,road density,0.189987725,0.175630733,0.95,-0.154242187,0.534217637
+riparian,EPT index,forest disturbance,0.433094883,0.194530491,0.95,0.051822128,0.814367638
+riparian,periphyton biomass,,0.196539131,0.037672245,,,
+riparian,% shredders,road density,-0.147411805,0.14193942,0.95,-0.425607956,0.130784346
+riparian,% shredders,forest disturbance,-0.215813013,0.167102165,0.95,-0.543327238,0.111701212
+riparian,% shredders,wetted width,-0.187549911,0.162111888,0.95,-0.505283374,0.130183551
+riparian,% shredders,substrate size,-0.623448491,0.20026942,0.95,-1.015969342,-0.23092764
+riparian,total nitrogen,,0.250319101,0.04374013,,,
+riparian,specific conductivity,forest disturbance,0.193886574,0.17440514,0.95,-0.147941218,0.535714366
+riparian,specific conductivity,human impact index,0.333899897,0.137236844,0.95,0.064920625,0.60287917
+riparian,embeddedness,,0.569047619,0.049354473,,,
+catchment,invertebrate biomass,,0.25124891,0.046117718,,,
+catchment,EPT index,,0.432045147,0.050610169,,,
+catchment,periphyton biomass,,0.196539131,0.037672245,,,
+catchment,% shredders,wetted width,-0.186324653,0.162416311,0.95,-0.504654773,0.132005467
+catchment,% shredders,substrate size,-0.62707131,0.200346546,0.95,-1.019743324,-0.234399296
+catchment,total nitrogen,,0.250319101,0.04374013,,,
+catchment,specific conductivity,road density,0.405262562,0.137884211,0.95,0.135014474,0.675510649
+catchment,specific conductivity,human impact index,0.410151397,0.143782862,0.95,0.128342167,0.691960628
+catchment,embeddedness,,0.569047619,0.049354473,,,
