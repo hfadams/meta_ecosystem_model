@@ -129,7 +129,7 @@ write.csv(rescaled_data_local,
           "output/rescaled_data_local.csv",
           row.names=FALSE)
 
-# 3) Functions for each model comparison ----
+# 3) Extract information from the model outputs ----
 
 # function for extracting model results
 extract_model_summary <- function(model, model_number, model_name) {
@@ -163,6 +163,8 @@ extract_model_summary <- function(model, model_number, model_name) {
 
   return(model_summary)
 }
+
+# 4) Make functions for each model comparison ----
 
 # Model 1: Benthic invertebrate biomass per cm^2
 invert_biomass_models <- function(data) {
@@ -1334,7 +1336,7 @@ embeddedness_models <- function(data) {
   return(model_results)
 }
 
-# 4) Compare all models at each spatial extent ----
+# 5) Compare all models at each spatial extent ----
 
 # "all models" function
 run_all_models <- function(data) {
@@ -1395,7 +1397,7 @@ model_summary <- rbind(model_summary_catchment,
                        model_summary_riparian,
                        model_summary_local)
 
-# 5) Format and export model summary ----
+# 6) Format and export model summary ----
 
 formatted_model_output <- model_summary %>%
   mutate(full_estimate = paste(as.character(round(estimate, 2)), "(",
