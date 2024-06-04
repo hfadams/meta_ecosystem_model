@@ -30,8 +30,12 @@ Government of Canada (2022) High Resolution Digital Elevation Model (HRDEM) - Ca
 7) Data sharing agreement with the Government of Newfoundland and Labrador.
 
 ## Methods  
-### In situ data  
-We collected the in situ data in triplicate at each stream site and took the mean of the three samples. Refer to the manuscript and appendix A for detailed methods.
+### *In situ* data  
+We collected water quality metrics (i.e., pH, water temperature, alkalinity, specific condyctivity, dissolved organic nitrogen, total nitrogen), benthic invertebrate samples, periphyton samples, channel measurements (i.e., depth, width, flow, substrate size), and canopy cover measurements at each stream site, following the Canadian Aquatic Biomonitoring Newtwork (CABIN) guidelines.  
+
+We created three spatial extents within which to measure terrestrial disturbance: catchment, riparian (100 m buffer on either side of the upstream tributaries), and local (the closest 10% of the catchment area upstream of the sampling location). We then created three metrics for quantifying terrestrial disturbances at each spatial extent: 1) percent disturbed forest area (i.e., forest that had been cleared, logged, experienced severe defoliation from an insect outbreak or experienced a recent forest fire); 2) unpaved road density (ATV trails and logging roads); and 3) percent high human impact index area (i.e., has been assigned a human impact intensity ranking of 7-10 on a scale from 0-10, with 10 being the highest human impact). We also calculated percent wetland, lake, and rock/soil barrens within each spatial extent.  
+
+Refer to the manuscript and appendix A for detailed methods on *in situ* data collection and processing.
 
 ### Model simulations
 After developing a riparian-stream meta-ecosystem model, we used Mathematica to solve for all possible analytical equilibria of the model. We then selected the equilibrium that was locally stable and feasible, and parameterized the model by generating 10,000 random parameter combinations, each within a range from 0-10 (or 0-1 if a proportion). From these we selected the first 1,000 equilibria taht were feasible, locally stable, and where the benthic invertebrate biomass was greater than periphyton biomass. We used these simulations as the "undisturbed" meta-ecosystem to which we created "terrestrial disturbances" by increasing key parameters to simulate tree removal and increased erosion. Refer to the manuscript and Appendix B for further details.
@@ -75,16 +79,6 @@ Empirical data used for statistical analysis (*in situ* data collected from stre
 * tss_filters.csv: Mass of total suspended solids measured from water samples collected at each stream site. Note that these measurements were below the instrument detection limit and were not included in our analyses.
 * periphyton_afdm.csv: Ash free dry mass (AFDM) of periphyton samples collected at each stream site
 
-#### References:  
-
-Benke, A. C., Huryn, A. D., Smock, L. A., & Wallace, J. B. (1999). Length-Mass Relationships for Freshwater Macroinvertebrates in North America with Particular Reference to the Southeastern United States. In Source: Journal of the North American Benthological Society (Vol. 18, Issue 3).  
-
-Burgherr, P., & Meyer, E. I. (1997). Regression analysis of linear body dimensions vs. dry mass in stream macroinvertebrates. Archiv Für Hydrobiologie, 139(1), 101–112. https://doi.org/10.1127/archiv-hydrobiol/139/1997/101  
-
-Hauer, F. R., & Lamberti, G. A. (2007). Methods in stream ecology. Elsevier Inc.  
-
-Ministry of Environment. (2009). The Canadian Aquatic Biomonitoring Network Field Manual. http://www.unb.ca/cri/cabin_criweb.html  
-
 ### Folder 2: scripts
 Scripts used for processing/analyzing our *in situ* and geospatial data and for simulating disturbances in our meta-ecosystem model.  
 *  [calculating_disturbance_metrics.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/calculating_disturbance_metrics.R): Processing geospatial data (i.e., forest distubance, roads and trails, landcover, and human impact index) to calculate metrics for each site at the catchment, riparian, and local spatial extent. Generates the following files: disturbance_data_large.csv, disturbance_data_med.csv, disturbance_data_small.csv    
@@ -92,7 +86,8 @@ Scripts used for processing/analyzing our *in situ* and geospatial data and for 
 *  [global_sensitivity_analysis.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/global_sensitivity_analysis.R): Script for running the global sensitivity analysis to determine the most important parameters in our meta-ecosystem model.  
 *  [meta_ecosystem_analytical_equilibria.nb](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/meta_ecosystem_analytical_equilibria.nb): Code for generating the analytical equilibria and jacobian matrix for our meta-ecosystem model, written in Wolfram Language.
 *  [simulate_disturbance.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/simulate_disturbance.R): Script for simulating disturbance in our meta-ecosystem model, generates param_simulations_stable_10000.csv  
-*  [stats_models.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/stats_models.R): Script to evaluate top general linear models for each key stream response variable (i.e., benthic invertebrate biomass, EPT index, periphyton biomass, percent shredders, dissolved nitrogen, electrical conductivity, and embeddedness) to determine relationships between stream quality and terrestrial disturbance. Generates empirical_glm_results.csv  
+*  [stats_models.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/stats_models.r): Script to evaluate top general linear models for each key stream response variable (i.e., benthic invertebrate biomass, EPT index, periphyton biomass, percent shredders, dissolved nitrogen, electrical conductivity, and embeddedness) to determine relationships between stream quality and terrestrial disturbance. Generates empirical_glm_results.csv
+*  [model_averaging.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/model_averaging.r): Script to perform model averaging on the general linear models for each key stream response variable after removing models with uninformative parameters and models that were within delta AICc 2 of the null model. Generates model_averaging_results.csv  
 *  [stream_data_cleaning.R](https://github.com/hfadams/meta_ecosystem_model/blob/main/scripts/stream_data_cleaning.R): Script to clean and process *in situ* empirical data collected at each stream site, generates empirical_stream_data.csv and empirical_stream_data_standard_deviations.csv  
 
 ### Folder 3: output
@@ -112,6 +107,7 @@ This project is licensed under the MIT license, please see the [MIT license web 
 This work was funded by an NSERC Discovery grant. We would like to thank all the institutions and authors who made their data open source and free to support our work.
 
 ## Recommended citation
+Adams, H. and Leroux. S.J. (2024). "Integrating field data and a meta-ecosystem model to study the effects of multiple terrestrial disturbances on small stream ecosystem function." [Manuscript submitted for publication].
 
 ## Authors
 ### Scripts
@@ -121,5 +117,12 @@ This work was funded by an NSERC Discovery grant. We would like to thank all the
 **Hannah Adams** - *Author* - [LinkedIn](https://www.linkedin.com/in/hannah-adams-624122219/), [GitHub](https://github.com/hfadams), [ORCiD](https://orcid.org/0000-0003-2647-8021)  
 **Shawn J. Leroux** - *Co-author* - [GitHub](https://github.com/sjleroux), [ORCiD](https://orcid.org/0000-0001-9580-0294), [website](https://shawnleroux.wixsite.com/lerouxlab)
 
-## References
+## References:  
 
+Benke, A. C., Huryn, A. D., Smock, L. A., & Wallace, J. B. (1999). Length-Mass Relationships for Freshwater Macroinvertebrates in North America with Particular Reference to the Southeastern United States. In Source: Journal of the North American Benthological Society (Vol. 18, Issue 3).  
+
+Burgherr, P., & Meyer, E. I. (1997). Regression analysis of linear body dimensions vs. dry mass in stream macroinvertebrates. Archiv Für Hydrobiologie, 139(1), 101–112. https://doi.org/10.1127/archiv-hydrobiol/139/1997/101  
+
+Hauer, F. R., & Lamberti, G. A. (2007). Methods in stream ecology. Elsevier Inc.  
+
+Ministry of Environment. (2009). The Canadian Aquatic Biomonitoring Network Field Manual. http://www.unb.ca/cri/cabin_criweb.html  
