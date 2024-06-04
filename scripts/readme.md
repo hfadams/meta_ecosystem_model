@@ -11,7 +11,7 @@ Sections of code requiring data files that are not provided are commented out, b
 ### Processing empirical data  
 * stream_data_cleaning.R  
     requires: water_chemistry.csv, canopy_cover.csv, pebble_count.csv, channel_measurements.csv, chlorophyll_a.csv, periphyton_foil.csv, periphyton_afdm.csv  
-    outputs: all_mean_data.csv, all_sd_data.csv (mean and standard deviations for *in situ* data from each stream site)  
+    outputs: empirical_stream_data.csv, empirical_stream_data_standard_deviations.csv
 * calculating_disturbance_metrics.R  
     requires: stream_reach.shp, catchments.shp, stream_sites.shp, riparian_extent.shp, local_extent.shp, paved_roads.shp, unpaved_roads.shp, trails.shp, forest_disturbance.shp, lakes.shp, barrens.shp, wetland.shp, human_footrpint.shp  
     outputs: disturbance_data_local.csv, disturbance_data_riparian.csv, disturbance_data_catchment.csv  
@@ -25,7 +25,7 @@ Sections of code requiring data files that are not provided are commented out, b
     outputs: empirical_glm_results.csv, rescaled_data_local.csv, rescaled_data_riparian.csv, rescaled_data_catchment.csv    
 * model_averaging.r
     requires: rescaled_data_local.csv, rescaled_data_riparian.csv, rescaled_data_catchment.csv  
-    outputs: model_summary_local_averaged.svg, model_summary_local_averaged.svg, model_summary_local_averaged.svg, model_averaging_formatted.csv  
+    outputs: model_summary_local_averaged.svg, model_summary_riparian_averaged.svg, model_summary_catchment_averaged.svg, model_averaging_formatted.csv  
 
 ### Meta-ecosystem model  
 * meta_ecosystem_analytical_equilibria.nb  
