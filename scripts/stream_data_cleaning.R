@@ -487,5 +487,5 @@ all_sd_data <- canopy_calcs %>%
   
   
 # export files
-write.csv(all_mean_data, "output/all_site_data_means.csv", row.names = FALSE)
-write.csv(all_sd_data, "output/all_site_data_sd.csv", row.names = FALSE)
+write.csv(all_mean_data, "output/empirical_stream_data.csv", row.names = FALSE)
+write.csv(all_sd_data, "output/empirical_stream_data_standard_deviations.csv", row.names = FALSE)
