@@ -720,18 +720,18 @@ toc()
 ggsave(file = "output/surafce_plots_forestry.svg", plot=forestry_surface_plots, width=12, height=18)
 
 # figure B9 surface plot
-p7 <- ggplot(surface_data_forestry, aes(θt, μt, z=Na)) +
+p7 <- ggplot(surface_data_forestry, aes(θt, μt, z=Nt)) +
   geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Na mass", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Nt mass", reverse = TRUE)) + 
   xlab("death rate of Pt (θt)") + 
   ylab("Recycling (μt)") +
   scale_y_reverse()
 
-p8 <- ggplot(surface_data_forestry, aes(θt, μt, z=Nt)) +
+p8 <- ggplot(surface_data_forestry, aes(θt, μt, z=Pt)) +
   geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Nt mass", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Pt biomass", reverse = TRUE)) + 
   xlab("death rate of Pt (θt)") + 
   ylab("") +
   scale_y_reverse()
