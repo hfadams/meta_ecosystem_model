@@ -656,7 +656,7 @@ toc()
 
 tic("generate data for forest simulation plot")
 # transform data to matrix form
-surface_data_forestry <- forest_disturbance_data %>% 
+surface_data_forestry <- stable_data_θt_μt %>% 
   select(θt, μt, Ha, Pa, ha_prod, pa_prod, Na, Nt, Lt, Pt) %>% 
   group_by(θt, μt) %>% 
   summarise_at(vars(Ha, Pa, ha_prod, pa_prod, Na, Nt, Lt, Pt),
@@ -665,17 +665,17 @@ surface_data_forestry <- forest_disturbance_data %>%
 
 write.csv(surface_data_forestry, "output/surface_data_forestry.csv", row.names=FALSE)
 
-# figure 5 surface plot
+# figure 6 surface plot
 p1 <- ggplot(surface_data_forestry, aes(θt, μt, z=Ha)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Ha density", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Ha biomass", reverse = TRUE)) + 
   xlab("") + 
   ylab("Recycling (μt)") + 
   scale_y_reverse()
 
 p2 <- ggplot(surface_data_forestry, aes(θt, μt, z=ha_prod)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
   guides(fill=guide_legend(title="Ha productivity", reverse = TRUE)) + 
   xlab("") + 
@@ -683,15 +683,15 @@ p2 <- ggplot(surface_data_forestry, aes(θt, μt, z=ha_prod)) +
   scale_y_reverse()
 
 p3 <- ggplot(surface_data_forestry, aes(θt, μt, z=Pa)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Pa density", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Pa biomass", reverse = TRUE)) + 
   xlab("") + 
   ylab("Recycling (μt)") + 
   scale_y_reverse()
 
 p4 <- ggplot(surface_data_forestry, aes(θt, μt, z=pa_prod)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
   guides(fill=guide_legend(title="Pa productivity", reverse = TRUE)) + 
   xlab("") + 
@@ -699,17 +699,17 @@ p4 <- ggplot(surface_data_forestry, aes(θt, μt, z=pa_prod)) +
   scale_y_reverse()
 
 p5 <- ggplot(surface_data_forestry, aes(θt, μt, z=Lt)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Lt density", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Lt biomass", reverse = TRUE)) + 
   xlab("tree death rate (θt)") + 
   ylab("Recycling (μt)") + 
   scale_y_reverse()
 
 p6 <- ggplot(surface_data_forestry, aes(θt, μt, z=Na)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Na density", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Na mass", reverse = TRUE)) + 
   xlab("tree death rate (θt)") + 
   ylab("") + 
   scale_y_reverse()
@@ -721,17 +721,17 @@ ggsave(file = "output/surafce_plots_forestry.svg", plot=forestry_surface_plots, 
 
 # figure B9 surface plot
 p7 <- ggplot(surface_data_forestry, aes(θt, μt, z=Na)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Na density", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Na mass", reverse = TRUE)) + 
   xlab("death rate of Pt (θt)") + 
   ylab("Recycling (μt)") +
   scale_y_reverse()
 
 p8 <- ggplot(surface_data_forestry, aes(θt, μt, z=Nt)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Nt density", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Nt mass", reverse = TRUE)) + 
   xlab("death rate of Pt (θt)") + 
   ylab("") +
   scale_y_reverse()
@@ -761,7 +761,7 @@ toc()
 
 tic("plot atv simulation")
 # transform data to matrix form
-surface_data_atv <- atv_disturbance_data %>% 
+surface_data_atv <- stable_data_βa_αa %>% 
   select(βa, αa, Ha, Pa, ha_prod, pa_prod, Na, Nt, Lt, Pt) %>% 
   group_by(βa, αa) %>% 
   summarise_at(vars(Ha, Pa, ha_prod, pa_prod, Na, Nt, Lt, Pt),
@@ -770,18 +770,18 @@ surface_data_atv <- atv_disturbance_data %>%
 
 write.csv(surface_data_atv, "output/surface_data_atv.csv", row.names=FALSE)
 
-# figure 6 surface plot
+# figure 7 surface plot
 p1 <- ggplot(surface_data_atv, aes(βa, αa, z=Ha)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Ha density", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Ha biomass", reverse = TRUE)) + 
   xlab("") + 
   ylab("Pa nutrient uptake (αa)") + 
   scale_x_reverse() + 
   scale_y_reverse()
 
 p2 <- ggplot(surface_data_atv, aes(βa, αa, z=ha_prod)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
   guides(fill=guide_legend(title="Ha productivity", reverse = TRUE)) + 
   xlab("") + 
@@ -790,16 +790,16 @@ p2 <- ggplot(surface_data_atv, aes(βa, αa, z=ha_prod)) +
   scale_y_reverse()
 
 p3 <- ggplot(surface_data_atv, aes(βa, αa, z=Pa)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Pa density", reverse = TRUE)) +
+  guides(fill=guide_legend(title="Pa biomass", reverse = TRUE)) +
   xlab("Ha nutrient uptake (βa)") + 
   ylab("Pa nutrient uptake (αa)") + 
   scale_x_reverse() + 
   scale_y_reverse()
 
 p4 <- ggplot(surface_data_atv, aes(βa, αa, z=pa_prod)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
   guides(fill=guide_legend(title="Pa productivity", reverse = TRUE)) + 
   xlab("Ha nutrient uptake (βa)") + 
@@ -813,27 +813,27 @@ toc()
 
 # figure B10 surface plot
 p5 <- ggplot(surface_data_atv, aes(βa, αa, z=Na)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Na density", reverse = TRUE)) + 
+  guides(fill=guide_legend(title="Na mass", reverse = TRUE)) + 
   xlab("Ha nutrient uptake (βa)") + 
   ylab("Pa nutrient uptake (αa)") + 
   scale_x_reverse() + 
   scale_y_reverse()
 
 p6 <- ggplot(surface_data_atv, aes(βa, αa, z=Nt)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Nt density", reverse = TRUE)) +
+  guides(fill=guide_legend(title="Nt mass", reverse = TRUE)) +
   xlab("Ha nutrient uptake (βa)") + 
   ylab("") + 
   scale_x_reverse() + 
   scale_y_reverse()
 
 p7 <- ggplot(surface_data_atv, aes(βa, αa, z=Pt)) +
-  geom_contour_filled() +
+  geom_contour_filled(bins = 12) +
   theme_classic() + 
-  guides(fill=guide_legend(title="Pt density", reverse = TRUE)) +
+  guides(fill=guide_legend(title="Pt biomass", reverse = TRUE)) +
   xlab("Ha nutrient uptake (βa)") + 
   ylab("") + 
   scale_x_reverse() + 
